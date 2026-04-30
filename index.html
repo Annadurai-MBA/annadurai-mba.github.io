@@ -611,7 +611,6 @@
 <footer>
   <div class="footer-inner">
     <span>&copy; 2026 Raja Annadurai</span>
-    <span>Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude Code</a></span>
   </div>
 </footer>
 
@@ -865,7 +864,7 @@ function renderSeg(name) {
     </div>
     <div class="dash-charts">
       <div>
-        <div class="dash-chart-title">Application sizing — relative scale</div>
+        <div class="dash-chart-title">Application sizing (relative scale)</div>
         <div class="dash-chart-sub">Largest application indexed to 100</div>
         <div class="canvas-wrap" style="height:${bh}px;">
           <canvas id="c-bar"></canvas>
@@ -873,7 +872,7 @@ function renderSeg(name) {
       </div>
       <div>
         <div class="dash-chart-title">Regional distribution</div>
-        <div class="dash-chart-sub">% split — North America · Europe · Asia Pacific</div>
+        <div class="dash-chart-sub">% split: North America · Europe · Asia Pacific</div>
         <div class="canvas-wrap" style="height:${sh}px;">
           <canvas id="c-stack"></canvas>
         </div>
@@ -887,7 +886,7 @@ function renderSeg(name) {
       </thead>
       <tbody>${rows}</tbody>
     </table>
-    ${seg.limited ? '<p class="seg-note">This segment analysis is ongoing — additional applications currently in scope.</p>' : ''}
+    ${seg.limited ? '<p class="seg-note">This segment analysis is ongoing, additional applications currently in scope.</p>' : ''}
   `;
 
   barChart = new Chart(document.getElementById('c-bar').getContext('2d'), {
