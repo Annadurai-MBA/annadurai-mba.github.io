@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="[ARTICLE TITLE] — Raja Annadurai">
+  <meta property="og:title" content="[ARTICLE TITLE] — Raja Annadurai">
+  <meta property="og:description" content="[SHORT DESCRIPTION FOR OG]">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <title>[ARTICLE TITLE] — Raja Annadurai</title>
+</head>
+<body class="article-page">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">Raja Annadurai</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#tools">Tools</a></li>
+      <li><a href="../index.html#thinking">Thinking</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="../index.html#work"     onclick="closeMobile()">Work</a>
+  <a href="../index.html#about"    onclick="closeMobile()">About</a>
+  <a href="../index.html#tools"    onclick="closeMobile()">Tools</a>
+  <a href="../index.html#thinking" onclick="closeMobile()">Thinking</a>
+  <a href="../index.html#contact"  onclick="closeMobile()">Contact</a>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<div class="article-hero">
+  <div class="article-hero-inner">
+    <a href="../index.html#thinking" class="article-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to portfolio
+    </a>
+    <span class="article-category">[CATEGORY BADGE — e.g. Product Management]</span>
+    <h1 class="article-title">[ARTICLE TITLE]</h1>
+    <div class="article-meta">
+      <span>[DATE]</span>
+      <span class="meta-dot"></span>
+      <span id="reading-time">[READING TIME — e.g. 5 min read]</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE BODY -->
+<!-- Replace everything inside this div with article content.          -->
+<!-- Use <p> for paragraphs and <h2> for section headings.            -->
+<!-- The reading time JS counts words in this element automatically.  -->
+<div class="article-body" id="article-body">
+
+  <p>[ARTICLE BODY — paragraphs go here]</p>
+
+  <h2>[Section heading]</h2>
+
+  <p>[More paragraphs]</p>
+
+</div>
+
+<!-- AUTHOR BIO — keep identical across all articles -->
+<div class="article-author">
+  <div class="author-card">
+    <div class="author-avatar">RA</div>
+    <div class="author-info">
+      <p class="author-name">Raja Annadurai</p>
+      <p class="author-bio">PMP&reg; | MBA HSG | M.Sc. Computational Engineering. 15+ years at the intersection of industrial technology and commercial growth. Based in Aargau, Switzerland.</p>
+      <a href="https://www.linkedin.com/in/raja-annadurai-mba/" target="_blank" rel="noopener" class="author-link">Connect on LinkedIn &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>&copy; 2026 Raja Annadurai</span>
+    <span>Built with <a href="https://claude.ai" target="_blank" rel="noopener">Claude Code</a></span>
+  </div>
+</footer>
+
+<script>
+// Reading time — counts words in article body, divides by 200, rounds up
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.getElementById('article-body');
+  const el   = document.getElementById('reading-time');
+  if (body && el) {
+    const words = body.innerText.trim().split(/\s+/).filter(Boolean).length;
+    const mins  = Math.max(1, Math.ceil(words / 200));
+    el.textContent = mins + ' min read';
+  }
+});
+
+// Hamburger
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+</script>
+</body>
+</html>
