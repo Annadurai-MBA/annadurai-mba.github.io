@@ -64,7 +64,7 @@
     }
 
     .section-note {
-      color: var(--gray-muted); font-size: 15px; margin-bottom: 40px;
+      color: var(--gray-muted); font-size: 15px; margin-bottom: 12px; line-height: 1.6;
     }
 
     /* ── SLIDE DECK ── */
@@ -77,21 +77,10 @@
     .slide { display: none; padding: 40px; }
     .slide.active { display: block; }
 
-    .slide-eyebrow {
-      font-size: 11px; font-weight: 600; color: var(--accent);
-      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
-    }
-
     .slide-headline {
       color: var(--navy); font-size: clamp(18px, 2.8vw, 26px);
       font-weight: 700; line-height: 1.3; margin-bottom: 32px;
       max-width: 680px;
-    }
-
-    /* source chips visual */
-    .sources-visual {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      margin-bottom: 28px; align-items: center;
     }
 
     .source-chip {
@@ -105,77 +94,89 @@
       color: #0A6B5E; font-weight: 600;
     }
 
-    .flow-arrow {
-      font-size: 18px; color: var(--gray-muted); margin: 0 4px;
+    /* slide 1: scattered disconnected sources */
+    .s1-visual {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      margin-bottom: 28px;
     }
+    .s1-sources {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      flex: 1; min-width: 240px; max-width: 440px;
+    }
+    .s1-node {
+      background: var(--white); border: 1px solid var(--gray-light);
+      border-radius: 8px; padding: 10px 14px;
+      font-size: 13px; font-weight: 600; color: var(--gray-text);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.09); opacity: 0.92;
+    }
+    .s1-gap {
+      display: flex; align-items: center; gap: 7px; padding: 0 4px;
+    }
+    .s1-gap span {
+      width: 6px; height: 6px; border-radius: 50%; background: #CBD5E0;
+    }
+    .s1-decision {
+      border: 2px dashed #CBD5E0; border-radius: 12px;
+      padding: 20px; text-align: center; min-width: 210px;
+      background: var(--off-white); flex-shrink: 0;
+    }
+    .s1-q {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gray-light); color: var(--gray-muted);
+      font-size: 19px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px;
+    }
+    .s1-decision-title { color: var(--navy); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .s1-decision-sub { color: var(--gray-muted); font-size: 12px; line-height: 1.45; }
 
-    .flow-box {
-      background: var(--navy); color: var(--white);
-      border-radius: 8px; padding: 10px 20px;
-      font-size: 13px; font-weight: 600; text-align: center;
-      line-height: 1.4;
+    /* slide 2: clean flow */
+    .s2-flow {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      margin-bottom: 28px;
     }
+    .s2-sources {
+      display: flex; flex-direction: column; gap: 8px;
+      padding-left: 14px; border-left: 3px solid #81C8BE;
+    }
+    .s2-arrow { font-size: 26px; color: var(--gray-muted); line-height: 1; }
+    .s2-center { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .s2-analyser {
+      background: var(--navy); color: #fff; border-radius: 10px;
+      padding: 16px 22px; font-weight: 700; font-size: 14px; text-align: center;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 0 4px rgba(46,134,193,0.16), 0 8px 22px rgba(0,0,0,0.14);
+    }
+    .s2-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; border: 1px solid var(--gray-light);
+      border-radius: 20px; padding: 4px 12px;
+      font-size: 11px; font-weight: 600; color: var(--gray-text);
+    }
+    .s2-output {
+      background: #E6F7F4; color: #0A6B5E; border: 1.5px solid #81C8BE;
+      border-radius: 10px; padding: 16px 22px;
+      font-weight: 700; font-size: 14px; text-align: center;
+    }
+    .s2-output span { font-weight: 400; font-size: 11px; }
 
-    .flow-box--output {
-      background: #E6F7F4; color: #0A6B5E;
-      border: 1.5px solid #81C8BE;
+    /* slide 2 cta */
+    .s2-cta {
+      text-align: center; margin-top: 36px; padding-top: 28px;
+      border-top: 1px solid var(--gray-light);
     }
-
-    .slide-dashed-output {
-      border: 2px dashed #CBD5E0; border-radius: 8px;
-      padding: 12px 20px; color: var(--gray-muted); font-size: 13px;
-      text-align: center; margin-top: 8px; max-width: 300px;
-    }
+    .s2-cta-text { color: var(--navy); font-size: 16px; font-weight: 600; margin-bottom: 16px; }
 
     .evidence-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
       margin-top: 32px;
     }
-
     .evidence-card {
       background: var(--off-white); border: 1px solid var(--gray-light);
       border-radius: 8px; padding: 20px;
     }
-
-    .evidence-title {
-      color: var(--navy); font-size: 13px; font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .evidence-body {
-      color: var(--gray-text); font-size: 13px; line-height: 1.6;
-    }
-
-    /* dual audience note */
-    .audience-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-      margin-top: 32px;
-    }
-
-    .audience-card {
-      background: var(--off-white); border-radius: 8px;
-      padding: 20px 20px 20px 24px;
-    }
-
-    .audience-card--consulting {
-      border-left: 3px solid var(--accent);
-    }
-
-    .audience-card--employer {
-      border-left: 3px solid var(--gold);
-    }
-
-    .audience-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 8px;
-    }
-
-    .audience-label--consulting { color: var(--accent); }
-    .audience-label--employer { color: #92400E; }
-
-    .audience-body {
-      color: var(--gray-text); font-size: 13px; line-height: 1.6;
-    }
+    .evidence-title { color: var(--navy); font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .evidence-body { color: var(--gray-text); font-size: 13px; line-height: 1.6; }
 
     /* slide nav */
     .slide-nav {
@@ -183,7 +184,6 @@
       padding: 20px 40px; background: var(--off-white);
       border-top: 1px solid var(--gray-light);
     }
-
     .slide-btn {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600;
@@ -191,79 +191,52 @@
       background: var(--white); color: var(--gray-text);
       transition: all 0.2s ease;
     }
-
     .slide-btn:hover:not(:disabled) { background: var(--navy); color: var(--white); border-color: var(--navy); }
     .slide-btn:disabled { opacity: 0.35; cursor: default; }
 
-    .slide-dots { display: flex; gap: 8px; }
+    .slide-dots { display: flex; gap: 9px; align-items: center; }
     .slide-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gray-light); cursor: pointer;
-      transition: background 0.2s ease;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: transparent; border: 1.5px solid #CBD5E0;
+      cursor: pointer; transition: all 0.2s ease;
     }
-    .slide-dot.active { background: var(--accent); }
+    .slide-dot.active { background: var(--accent); border-color: var(--accent); }
 
-    /* ── DEMO MODE ── */
-    .demo-banner {
-      background: #E6F7F4; border: 1px solid #81C8BE;
-      border-radius: 8px; padding: 12px 20px;
-      font-size: 13px; color: #0A6B5E; font-weight: 500;
-      margin-bottom: 32px;
-      display: flex; align-items: center; gap: 8px;
+    /* ── TEAL BUTTON ── */
+    .btn-teal {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #0A6B5E; color: #fff; border: none;
+      padding: 12px 26px; border-radius: 4px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s ease; text-decoration: none;
     }
+    .btn-teal:hover { background: #085548; }
 
-    .demo-banner-dot {
-      width: 8px; height: 8px; background: #0A6B5E;
-      border-radius: 50%; flex-shrink: 0;
-    }
-
-    /* collapsible input panels */
-    .input-panels { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-
+    /* ── COLLAPSIBLE INPUT PANELS ── */
+    .input-panels { display: flex; flex-direction: column; gap: 10px; }
     .input-panel {
       border: 1px solid var(--gray-light); border-radius: 8px;
       background: var(--white); overflow: hidden;
     }
-
     .input-panel-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 20px; cursor: pointer;
       user-select: none; transition: background 0.15s ease;
     }
-
     .input-panel-header:hover { background: var(--off-white); }
-
     .input-panel-left { display: flex; align-items: center; gap: 12px; }
-
     .input-panel-num {
       width: 24px; height: 24px; border-radius: 50%;
       background: var(--accent); color: var(--white);
       font-size: 11px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-
-    .input-panel-label {
-      font-size: 14px; font-weight: 600; color: var(--navy);
-    }
-
-    .input-panel-sub {
-      font-size: 12px; color: var(--gray-muted); margin-top: 2px;
-    }
-
-    .input-panel-chevron {
-      color: var(--gray-muted); transition: transform 0.2s ease;
-      font-size: 16px; line-height: 1;
-    }
-
+    .input-panel-label { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .input-panel-sub { font-size: 12px; color: var(--gray-muted); margin-top: 2px; }
+    .input-panel-chevron { color: var(--gray-muted); transition: transform 0.2s ease; font-size: 16px; line-height: 1; }
     .input-panel.open .input-panel-chevron { transform: rotate(180deg); }
-
-    .input-panel-body {
-      display: none; padding: 0 20px 20px;
-    }
-
+    .input-panel-body { display: none; padding: 0 20px 20px; }
     .input-panel.open .input-panel-body { display: block; }
-
     .input-panel-text {
       color: var(--gray-text); font-size: 14px; line-height: 1.7;
       background: var(--off-white); border-radius: 6px;
@@ -271,336 +244,169 @@
       white-space: pre-wrap; font-family: inherit;
     }
 
-    /* analysis output */
-    .view-analysis-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--navy); color: var(--white);
-      border: none; padding: 12px 24px; border-radius: 4px;
-      font-size: 14px; font-weight: 600; cursor: pointer;
-      transition: background 0.2s ease;
+    /* ── SIX PANEL VIEWER ── */
+    .modal-panel { display: none; }
+    .modal-panel.active { display: block; }
+    .panel-stack { margin: 20px 0 8px; min-height: 320px; }
+    .panel-title { color: var(--navy); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .panel-sub { color: var(--gray-muted); font-size: 13px; margin-bottom: 20px; }
+    .panel-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 16px; border-top: 1px solid var(--gray-light); margin-top: 8px;
     }
-
-    .view-analysis-btn:hover { background: var(--navy-dark); }
-
-    .output-area { margin-top: 36px; }
-    .output-area.hidden { display: none; }
-
-    /* module cards */
-    .module-block {
-      border: 1px solid var(--gray-light); border-radius: 10px;
-      overflow: hidden; margin-bottom: 24px;
-    }
-
-    .module-header {
-      background: var(--navy); padding: 16px 24px;
-      display: flex; align-items: center; gap: 12px;
-    }
-
-    .module-num {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(255,255,255,0.2); color: var(--white);
-      font-size: 12px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .module-title {
-      color: var(--white); font-size: 14px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-
-    .module-body { padding: 24px; background: var(--white); }
 
     /* JTBD cards */
     .jtbd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .jtbd-card {
-      border: 1px solid var(--gray-light); border-radius: 8px;
-      padding: 20px; background: var(--off-white);
-    }
-
-    .jtbd-statement {
-      color: var(--navy); font-size: 14px; font-weight: 600;
-      line-height: 1.4; margin-bottom: 14px;
-    }
-
+    .jtbd-card { border: 1px solid var(--gray-light); border-radius: 8px; padding: 20px; background: var(--off-white); }
+    .jtbd-statement { color: var(--navy); font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 14px; }
     .jtbd-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-
-    .meta-pill {
-      display: inline-block; border-radius: 20px; padding: 3px 10px;
-      font-size: 11px; font-weight: 600;
-    }
-
+    .meta-pill { display: inline-block; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
     .meta-pill--type { background: #EBF5FB; color: #1a6fa0; }
     .meta-pill--freq { background: #F0FDF4; color: #166534; }
     .meta-pill--freq-med { background: #FFFBEB; color: #92400E; }
     .meta-pill--role { background: var(--gray-light); color: var(--gray-text); }
+    .jtbd-quote { border-left: 2px solid var(--accent); padding-left: 12px; font-size: 12px; color: var(--gray-muted); font-style: italic; line-height: 1.55; }
 
-    .jtbd-quote {
-      border-left: 2px solid var(--accent); padding-left: 12px;
-      font-size: 12px; color: var(--gray-muted); font-style: italic;
-      line-height: 1.55;
+    /* pain priority bar chart */
+    .pain-chart { display: flex; flex-direction: column; gap: 20px; }
+    .pain-row-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 7px; }
+    .pain-name { color: var(--navy); font-size: 14px; font-weight: 600; }
+    .pain-tag { font-size: 11px; font-weight: 600; color: var(--gray-muted); white-space: nowrap; }
+    .pain-track { background: var(--gray-light); border-radius: 6px; height: 26px; overflow: hidden; }
+    .pain-fill {
+      height: 100%; border-radius: 6px;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 10px; color: #fff; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.04em; min-width: 60px;
     }
-
-    /* pain matrix table */
-    .pain-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .pain-table th {
-      text-align: left; color: var(--gray-muted); font-size: 11px;
-      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 8px 12px 8px 0; border-bottom: 1px solid var(--gray-light);
-    }
-    .pain-table td {
-      padding: 12px 12px 12px 0; border-bottom: 1px solid var(--gray-light);
-      vertical-align: top; color: var(--gray-text);
-    }
-    .pain-table tr:last-child td { border-bottom: none; }
-    .pain-table td:first-child { color: var(--navy); font-weight: 600; width: 32px; }
-    .pain-table td:nth-child(2) { color: var(--navy); font-weight: 500; }
-
-    .sev-pill {
-      display: inline-block; border-radius: 20px; padding: 2px 8px;
-      font-size: 11px; font-weight: 600;
-    }
-    .sev-critical { background: #FEE2E2; color: #991B1B; }
-    .sev-high { background: #FEF3C7; color: #92400E; }
-    .sev-medium { background: #EBF5FB; color: #1a6fa0; }
-    .sev-none { background: #F3F4F6; color: #374151; }
 
     /* buyer role cards */
     .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    .role-card {
-      border: 1px solid var(--gray-light); border-radius: 8px;
-      padding: 20px;
-    }
-
-    .role-label {
-      font-size: 11px; font-weight: 700; color: var(--accent);
-      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
-    }
-
-    .role-title {
-      color: var(--navy); font-size: 14px; font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .role-body {
-      color: var(--gray-text); font-size: 13px; line-height: 1.6;
-    }
+    .role-card { border: 1px solid var(--gray-light); border-radius: 8px; padding: 20px; }
+    .role-label { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .role-title { color: var(--navy); font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+    .role-body { color: var(--gray-text); font-size: 13px; line-height: 1.6; }
+    .role-influence { font-size: 12px; color: var(--gray-muted); line-height: 1.5; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--gray-light); }
+    .role-influence strong { color: var(--navy); font-weight: 600; }
 
     /* PMF score */
-    .pmf-score-block {
-      background: var(--off-white); border-radius: 10px;
-      padding: 24px; margin-bottom: 20px;
-      display: flex; align-items: center; gap: 24px;
-    }
-
-    .pmf-score-num {
-      font-size: 48px; font-weight: 700; color: var(--navy);
-      line-height: 1; flex-shrink: 0;
-    }
-
-    .pmf-score-label {
-      color: var(--gray-muted); font-size: 13px; margin-top: 4px;
-    }
-
+    .pmf-gauge-wrap { text-align: center; margin-bottom: 20px; }
     .pmf-signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-
-    .pmf-signal-group { }
-
-    .pmf-signal-heading {
-      font-size: 12px; font-weight: 700; color: var(--navy);
-      text-transform: uppercase; letter-spacing: 0.06em;
-      margin-bottom: 10px;
-    }
-
-    .pmf-signal-item {
-      display: flex; align-items: flex-start; gap: 8px;
-      font-size: 13px; color: var(--gray-text); line-height: 1.55;
-      margin-bottom: 8px;
-    }
-
-    .pmf-signal-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      flex-shrink: 0; margin-top: 4px;
-    }
-
+    .pmf-signal-heading { font-size: 12px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+    .pmf-signal-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-text); line-height: 1.55; margin-bottom: 8px; }
+    .pmf-signal-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
     .pmf-signal-dot--lead { background: var(--accent); }
     .pmf-signal-dot--lag { background: var(--gold); }
+    .pmf-confidence { background: #FFFBEB; border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; color: #78350F; line-height: 1.6; }
 
-    .pmf-confidence {
-      background: #FFFBEB; border-left: 3px solid var(--gold);
-      padding: 12px 16px; border-radius: 0 6px 6px 0;
-      font-size: 13px; color: #78350F; line-height: 1.6;
+    /* customer journey map */
+    .journey-scroll { overflow-x: auto; padding-bottom: 6px; }
+    .journey-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; min-width: 580px; }
+    .journey-stage { display: flex; flex-direction: column; }
+    .journey-heat { height: 56px; border-radius: 8px 8px 0 0; }
+    .journey-label {
+      font-size: 11px; font-weight: 600; color: var(--navy); text-align: center;
+      padding: 8px 4px; border: 1px solid var(--gray-light); border-top: none;
+      border-radius: 0 0 8px 8px; min-height: 50px;
+      display: flex; align-items: center; justify-content: center; line-height: 1.3;
     }
-
-    /* validation roadmap */
-    .roadmap-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .roadmap-item {
-      border: 1px solid var(--gray-light); border-radius: 8px;
-      padding: 20px; position: relative; padding-left: 52px;
+    .journey-count { font-size: 10px; color: var(--gray-muted); text-align: center; margin-top: 6px; }
+    .journey-signal {
+      font-size: 11px; color: var(--gray-text); background: var(--off-white);
+      border: 1px solid var(--gray-light); border-radius: 6px;
+      padding: 8px; margin-top: 8px; line-height: 1.4;
     }
-
-    .roadmap-num {
-      position: absolute; left: 16px; top: 20px;
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--accent); color: var(--white);
-      font-size: 11px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .roadmap-action {
-      color: var(--navy); font-size: 14px; font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .roadmap-detail {
-      color: var(--gray-text); font-size: 13px; line-height: 1.65;
-    }
-
-    .roadmap-detail strong { color: var(--navy); font-weight: 600; }
 
     /* ── LIVE MODE ── */
     .live-banner {
       background: #FFF8E7; border-left: 3px solid var(--gold);
       padding: 12px 16px; border-radius: 0 8px 8px 0;
-      font-size: 13px; color: #78350F; margin-bottom: 32px;
-      line-height: 1.55;
+      font-size: 13px; color: #78350F; margin-bottom: 32px; line-height: 1.55;
     }
+    .privacy-note { font-size: 13px; color: var(--gray-muted); margin-bottom: 36px; line-height: 1.6; }
 
     .form-group { margin-bottom: 24px; }
-
-    .form-label {
-      display: block; font-size: 13px; font-weight: 600;
-      color: var(--navy); margin-bottom: 8px;
-    }
-
-    .form-label span {
-      font-weight: 400; color: var(--gray-muted); font-size: 12px;
-    }
-
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .form-label span { font-weight: 400; color: var(--gray-muted); font-size: 12px; }
     .form-input, .form-textarea, .form-select {
       width: 100%; padding: 10px 14px;
       border: 1px solid var(--gray-light); border-radius: 6px;
       font-size: 14px; font-family: inherit; color: var(--gray-text);
-      background: var(--white);
-      transition: border-color 0.2s ease;
+      background: var(--white); transition: border-color 0.2s ease;
     }
-
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      outline: none; border-color: var(--accent);
-    }
-
+    .form-input:focus, .form-textarea:focus, .form-select:focus { outline: none; border-color: var(--accent); }
     .form-textarea { resize: vertical; min-height: 100px; }
-
     .form-textarea--tall { min-height: 140px; }
 
-    .source-entry {
-      border: 1px solid var(--gray-light); border-radius: 8px;
-      padding: 20px; margin-bottom: 12px; background: var(--white);
-      position: relative;
-    }
-
-    .source-entry-header {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .source-entry-num {
-      font-size: 13px; font-weight: 700; color: var(--accent);
-    }
-
-    .remove-source-btn {
-      background: none; border: none; color: var(--gray-muted);
-      cursor: pointer; font-size: 18px; line-height: 1; padding: 0;
-      transition: color 0.2s;
-    }
-
+    .source-entry { border: 1px solid var(--gray-light); border-radius: 8px; padding: 20px; margin-bottom: 12px; background: var(--white); position: relative; }
+    .source-entry-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .source-entry-num { font-size: 13px; font-weight: 700; color: var(--accent); }
+    .remove-source-btn { background: none; border: none; color: var(--gray-muted); cursor: pointer; font-size: 18px; line-height: 1; padding: 0; transition: color 0.2s; }
     .remove-source-btn:hover { color: #C53030; }
-
     .add-source-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      background: none; border: 1px dashed #CBD5E0;
-      padding: 10px 18px; border-radius: 6px;
-      color: var(--accent); font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: all 0.2s ease; width: 100%;
-      justify-content: center;
+      background: none; border: 1px dashed #CBD5E0; padding: 10px 18px; border-radius: 6px;
+      color: var(--accent); font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s ease; width: 100%; justify-content: center;
     }
-
     .add-source-btn:hover { border-color: var(--accent); background: #EBF5FB; }
     .add-source-btn:disabled { opacity: 0.4; cursor: default; }
-
-    .sources-counter {
-      font-size: 12px; color: var(--gray-muted); margin: 12px 0 24px;
-    }
-
+    .sources-counter { font-size: 12px; color: var(--gray-muted); margin: 12px 0 24px; }
     .sources-counter span { color: var(--navy); font-weight: 600; }
+
+    /* enrich toggle */
+    .toggle-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--off-white); border: 1px solid var(--gray-light);
+      border-radius: 8px; padding: 16px 18px; margin-bottom: 24px;
+    }
+    .toggle-switch { position: relative; width: 42px; height: 24px; flex-shrink: 0; margin-top: 2px; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; inset: 0; background: var(--gray-light); border-radius: 24px; transition: 0.2s; cursor: pointer; }
+    .toggle-slider::before { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+    .toggle-switch input:checked + .toggle-slider { background: #0A6B5E; }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+    .toggle-label { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .toggle-desc { font-size: 12px; color: var(--gray-muted); line-height: 1.5; }
 
     .run-btn {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent); color: var(--white);
-      border: none; padding: 13px 28px; border-radius: 4px;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      transition: background 0.2s ease;
+      background: var(--accent); color: var(--white); border: none;
+      padding: 13px 28px; border-radius: 4px; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: background 0.2s ease;
     }
-
     .run-btn:hover:not(:disabled) { background: var(--navy); }
     .run-btn:disabled { opacity: 0.45; cursor: default; }
 
-    .loading-state {
-      display: none; align-items: center; gap: 12px;
-      padding: 20px; background: var(--off-white);
-      border-radius: 8px; margin-top: 24px;
-      font-size: 14px; color: var(--gray-text);
-    }
-
+    .loading-state { display: none; align-items: center; gap: 12px; padding: 20px; background: var(--off-white); border-radius: 8px; margin-top: 24px; font-size: 14px; color: var(--gray-text); }
     .loading-state.visible { display: flex; }
-
-    .spinner {
-      width: 20px; height: 20px; border-radius: 50%;
-      border: 2px solid var(--gray-light);
-      border-top-color: var(--accent);
-      animation: spin 0.8s linear infinite;
-      flex-shrink: 0;
-    }
-
+    .spinner { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--gray-light); border-top-color: var(--accent); animation: spin 0.8s linear infinite; flex-shrink: 0; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .error-msg {
-      display: none; background: #FEF2F2; border-left: 3px solid #C53030;
-      padding: 12px 16px; border-radius: 0 6px 6px 0;
-      font-size: 13px; color: #991B1B; margin-top: 16px; line-height: 1.55;
-    }
-
+    .error-msg { display: none; background: #FEF2F2; border-left: 3px solid #C53030; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; color: #991B1B; margin-top: 16px; line-height: 1.55; }
     .error-msg.visible { display: block; }
 
-    .scope-note {
-      background: var(--off-white); border: 1px solid var(--gray-light);
-      border-radius: 8px; padding: 20px; margin-top: 32px;
-      font-size: 13px; color: var(--gray-muted); line-height: 1.65;
-    }
+    .output-area { margin-top: 36px; }
+    .output-area.hidden { display: none; }
 
+    .scope-note { background: var(--off-white); border: 1px solid var(--gray-light); border-radius: 8px; padding: 20px; margin-top: 32px; font-size: 13px; color: var(--gray-muted); line-height: 1.65; }
     .scope-note strong { color: var(--navy); }
 
     /* ── AUTHOR ── */
-    .tool-author {
-      max-width: 900px; margin: 0 auto;
-      padding: 0 24px 80px;
-      border-top: 1px solid var(--gray-light);
-      padding-top: 40px;
-    }
+    .tool-author { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; border-top: 1px solid var(--gray-light); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 720px) {
       .evidence-grid { grid-template-columns: 1fr; }
-      .audience-grid { grid-template-columns: 1fr; }
       .jtbd-grid { grid-template-columns: 1fr; }
       .role-grid { grid-template-columns: 1fr; }
       .pmf-signals-grid { grid-template-columns: 1fr; }
-      .pmf-score-block { flex-direction: column; align-items: flex-start; gap: 12px; }
       .slide { padding: 24px; }
       .slide-nav { padding: 16px 24px; }
+      .s1-gap { transform: rotate(90deg); }
+      .s2-arrow { transform: rotate(90deg); width: 100%; text-align: center; }
+      .s2-flow { flex-direction: column; align-items: stretch; }
+      .s2-sources { border-left: none; padding-left: 0; }
     }
   </style>
 </head>
@@ -653,19 +459,21 @@
     <div class="slide-deck">
       <!-- Slide 1 -->
       <div class="slide active" id="slide-1">
-        <p class="slide-eyebrow">Slide 1 of 2</p>
         <h2 class="slide-headline">Industrial product teams make decisions from one voice. Five voices are available and nobody is aggregating them.</h2>
 
-        <!-- disconnected sources visual -->
-        <div class="sources-visual">
-          <span class="source-chip">Quality team</span>
-          <span class="source-chip">Sales team</span>
-          <span class="source-chip">Business development</span>
-          <span class="source-chip">Market data</span>
-          <span class="source-chip">Direct interviews</span>
-          <span class="flow-arrow">&#8594;</span>
-          <div>
-            <div class="slide-dashed-output">Product decision<br><span style="font-size:11px;color:var(--gray-muted);">Based on which team had the last conversation?</span></div>
+        <div class="s1-visual">
+          <div class="s1-sources">
+            <div class="s1-node" style="transform:rotate(-3deg);">Quality team</div>
+            <div class="s1-node" style="transform:rotate(2deg);">Sales team</div>
+            <div class="s1-node" style="transform:rotate(-2deg);">Business development</div>
+            <div class="s1-node" style="transform:rotate(3deg);">Market data</div>
+            <div class="s1-node" style="transform:rotate(-1deg);">Direct interviews</div>
+          </div>
+          <div class="s1-gap" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="s1-decision">
+            <div class="s1-q">?</div>
+            <p class="s1-decision-title">Product decision</p>
+            <p class="s1-decision-sub">Based on which team had the last conversation?</p>
           </div>
         </div>
 
@@ -687,22 +495,26 @@
 
       <!-- Slide 2 -->
       <div class="slide" id="slide-2">
-        <p class="slide-eyebrow">Slide 2 of 2</p>
         <h2 class="slide-headline">Aggregate all five sources. Weight by importance. Output a requirements list ready for House of Quality input.</h2>
 
-        <!-- connected sources visual -->
-        <div class="sources-visual" style="flex-wrap:wrap;align-items:center;gap:10px;">
-          <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="s2-flow">
+          <div class="s2-sources">
             <span class="source-chip source-chip--teal">Quality team</span>
             <span class="source-chip source-chip--teal">Sales team</span>
             <span class="source-chip source-chip--teal">Business development</span>
             <span class="source-chip source-chip--teal">Market data</span>
             <span class="source-chip source-chip--teal">Direct interviews</span>
           </div>
-          <span class="flow-arrow" style="font-size:24px;">&#8594;</span>
-          <div class="flow-box" style="max-width:200px;">VoC Analyser<br><span style="font-size:11px;font-weight:400;opacity:0.8;">Google Gemini · B2B industrial pre-config</span></div>
-          <span class="flow-arrow" style="font-size:24px;">&#8594;</span>
-          <div class="flow-box flow-box--output">QFD-ready requirements<br><span style="font-size:11px;">with importance weights</span></div>
+          <span class="s2-arrow">&#8594;</span>
+          <div class="s2-center">
+            <div class="s2-analyser">VoC Analyser<br><span style="font-size:11px;font-weight:400;opacity:0.85;">B2B industrial pre-config</span></div>
+            <div class="s2-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.8z"/></svg>
+              Google Gemini
+            </div>
+          </div>
+          <span class="s2-arrow">&#8594;</span>
+          <div class="s2-output">QFD-ready requirements<br><span>with importance weights</span></div>
         </div>
 
         <div class="evidence-grid">
@@ -720,15 +532,9 @@
           </div>
         </div>
 
-        <div class="audience-grid">
-          <div class="audience-card audience-card--consulting">
-            <p class="audience-label audience-label--consulting">For consulting clients</p>
-            <p class="audience-body">Run this with your NPD team using your internal data as part of a market entry or product strategy engagement via Sigma Plus Associates.</p>
-          </div>
-          <div class="audience-card audience-card--employer">
-            <p class="audience-label audience-label--employer">For prospective employers</p>
-            <p class="audience-body">Built on 15+ years of B2B industrial VoC practice. Demonstrates methodology depth, domain expertise, and AI tool development capability.</p>
-          </div>
+        <div class="s2-cta">
+          <p class="s2-cta-text">See it working on a real product scenario.</p>
+          <button class="btn-teal" onclick="openDemoModal()">View sample analysis</button>
         </div>
       </div>
 
@@ -748,361 +554,24 @@
         </button>
       </div>
     </div>
+
+    <!-- Prominent demo trigger below the slides -->
+    <div style="text-align:center;margin-top:28px;">
+      <button class="btn-teal" onclick="openDemoModal()" style="font-size:15px;padding:14px 30px;">View sample analysis</button>
+    </div>
   </div>
 </section>
 
 
 <!-- ═══════════════════════════════════════════
-     SECTION 2: DEMO MODE
+     SECTION 2: LIVE MODE
      ═══════════════════════════════════════════ -->
-<section class="tool-section" id="demo-section">
-  <div class="tool-section-inner">
-    <p class="section-eyebrow">Demo mode</p>
-    <h2 class="section-heading">See it in action</h2>
-    <p class="section-note">Sample analysis. No API key required.</p>
-
-    <div class="demo-banner">
-      <span class="demo-banner-dot"></span>
-      Pre-loaded scenario: miniaturized pressure transmitter for pharmaceutical cleanroom process monitoring. Fictional product.
-    </div>
-
-    <!-- Input panels -->
-    <p style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:14px;">Five sources processed</p>
-    <div class="input-panels">
-
-      <div class="input-panel" id="panel-1">
-        <div class="input-panel-header" onclick="togglePanel('panel-1')">
-          <div class="input-panel-left">
-            <div class="input-panel-num">1</div>
-            <div>
-              <p class="input-panel-label">Quality team data</p>
-              <p class="input-panel-sub">Field complaint summary Q2-Q3</p>
-            </div>
-          </div>
-          <span class="input-panel-chevron">&#8964;</span>
-        </div>
-        <div class="input-panel-body">
-          <div class="input-panel-text">Field complaint summary Q2-Q3: 18 incidents of sensor drift after CIP (cleaning in place) cycles using NaOH 2% at 80&deg;C. Customers report recalibration required every 3 months instead of specified 12-month interval. Warranty claims concentrated in 3 food and beverage accounts. Root cause investigation ongoing &mdash; suspected diaphragm material degradation under alkaline cleaning chemistry.</div>
-        </div>
-      </div>
-
-      <div class="input-panel" id="panel-2">
-        <div class="input-panel-header" onclick="togglePanel('panel-2')">
-          <div class="input-panel-left">
-            <div class="input-panel-num">2</div>
-            <div>
-              <p class="input-panel-label">Sales team CRM notes</p>
-              <p class="input-panel-sub">Pharma, food processing, biotech accounts</p>
-            </div>
-          </div>
-          <span class="input-panel-chevron">&#8964;</span>
-        </div>
-        <div class="input-panel-body">
-          <div class="input-panel-text">Three separate accounts (pharma, food processing, biotech) requested FDA 21 CFR Part 11 compliant data logging this quarter. Current model does not support it. Lost one deal to a competitor explicitly on this basis. Two more accounts evaluating alternatives. Additional recurring request: HART protocol overlay on 4-20mA output &mdash; our model is 4-20mA only, no HART. Came up in 5 of last 8 technical discussions.</div>
-        </div>
-      </div>
-
-      <div class="input-panel" id="panel-3">
-        <div class="input-panel-header" onclick="togglePanel('panel-3')">
-          <div class="input-panel-left">
-            <div class="input-panel-num">3</div>
-            <div>
-              <p class="input-panel-label">Business development notes</p>
-              <p class="input-panel-sub">Market visit summary, DACH region</p>
-            </div>
-          </div>
-          <span class="input-panel-chevron">&#8964;</span>
-        </div>
-        <div class="input-panel-body">
-          <div class="input-panel-text">Market visit summary &mdash; 6 customer site visits across DACH region, pharmaceutical and biotech sector. Primary finding: validation lifecycle is the biggest procurement pain point. Customers report 8 to 14 weeks for sensor qualification per site, which creates significant project delays. Several mentioned IQ/OQ/PQ documentation package as a purchasing decision factor &mdash; currently not available from us. Two R&amp;D managers mentioned interest in flush-mount diaphragm variant for viscous media applications. Not in current portfolio.</div>
-        </div>
-      </div>
-
-      <div class="input-panel" id="panel-4">
-        <div class="input-panel-header" onclick="togglePanel('panel-4')">
-          <div class="input-panel-left">
-            <div class="input-panel-num">4</div>
-            <div>
-              <p class="input-panel-label">Market data and RFQ analysis</p>
-              <p class="input-panel-sub">9 RFQs received in H1</p>
-            </div>
-          </div>
-          <span class="input-panel-chevron">&#8964;</span>
-        </div>
-        <div class="input-panel-body">
-          <div class="input-panel-text">Analysis of 9 RFQs received in H1: 7 of 9 specified ATEX Zone 1 certification requirement. Our current product is Zone 2 only. 6 of 9 required hygienic design (EHEDG or 3-A certification). 5 of 9 requested IO-Link or digital output option alongside 4-20mA. 4 of 9 required ingress protection IP69K &mdash; current product is IP67.</div>
-        </div>
-      </div>
-
-      <div class="input-panel" id="panel-5">
-        <div class="input-panel-header" onclick="togglePanel('panel-5')">
-          <div class="input-panel-left">
-            <div class="input-panel-num">5</div>
-            <div>
-              <p class="input-panel-label">Direct customer interview</p>
-              <p class="input-panel-sub">Process engineer, pharma contract manufacturer</p>
-            </div>
-          </div>
-          <span class="input-panel-chevron">&#8964;</span>
-        </div>
-        <div class="input-panel-body">
-          <div class="input-panel-text">Interview with process engineer, mid-size pharma contract manufacturer: Primary job is to ensure batch traceability compliance. Biggest pain is sensor exchange during production campaigns &mdash; every swap triggers a revalidation event. Estimated cost per revalidation: CHF 15,000 to 25,000 in downtime and documentation. Ideal: a sensor that can be exchanged without triggering full revalidation, with stored calibration certificate. Not aware of any supplier offering this currently. Secondary pain: installation &mdash; current threaded process connections require specialized tooling maintenance teams do not always have. Requested hygienic clamp connection as preferred option.</div>
-        </div>
-      </div>
-
-    </div>
-
-    <button class="view-analysis-btn" onclick="toggleDemoOutput()">
-      <svg id="view-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-      <span id="view-btn-text">View analysis</span>
-    </button>
-
-    <!-- PRE-COMPUTED OUTPUT -->
-    <div class="output-area hidden" id="demo-output">
-
-      <!-- Module 1: JTBD -->
-      <div class="module-block">
-        <div class="module-header">
-          <div class="module-num">1</div>
-          <div class="module-title">Jobs to be Done</div>
-        </div>
-        <div class="module-body">
-          <div class="jtbd-grid">
-
-            <div class="jtbd-card">
-              <p class="jtbd-statement">Ensure continuous batch traceability compliance without revalidation triggers</p>
-              <div class="jtbd-meta">
-                <span class="meta-pill meta-pill--type">Functional</span>
-                <span class="meta-pill meta-pill--freq">High &middot; 4 of 5 sources</span>
-                <span class="meta-pill meta-pill--role">Quality / Regulatory Affairs</span>
-              </div>
-              <p class="jtbd-quote">"Every sensor swap triggers a revalidation event &mdash; CHF 15,000 to 25,000 in downtime"</p>
-            </div>
-
-            <div class="jtbd-card">
-              <p class="jtbd-statement">Maintain sensor accuracy through aggressive CIP cycles</p>
-              <div class="jtbd-meta">
-                <span class="meta-pill meta-pill--type">Functional</span>
-                <span class="meta-pill meta-pill--freq">High &middot; 3 sources, 18 complaints</span>
-                <span class="meta-pill meta-pill--role">Production / Process Engineering</span>
-              </div>
-              <p class="jtbd-quote">"Recalibration required every 3 months instead of 12-month interval"</p>
-            </div>
-
-            <div class="jtbd-card">
-              <p class="jtbd-statement">Reduce sensor qualification and procurement lead time</p>
-              <div class="jtbd-meta">
-                <span class="meta-pill meta-pill--type">Functional</span>
-                <span class="meta-pill meta-pill--freq-med">Medium &middot; 3 sources</span>
-                <span class="meta-pill meta-pill--role">Project Engineering / Procurement</span>
-              </div>
-              <p class="jtbd-quote">"8 to 14 weeks for sensor qualification per site creates significant project delays"</p>
-            </div>
-
-            <div class="jtbd-card">
-              <p class="jtbd-statement">Demonstrate regulatory compliance to internal and external auditors</p>
-              <div class="jtbd-meta">
-                <span class="meta-pill meta-pill--type">Social / Organizational</span>
-                <span class="meta-pill meta-pill--freq-med">Medium &middot; 3 sources</span>
-                <span class="meta-pill meta-pill--role">Quality Manager / Regulatory Affairs</span>
-              </div>
-              <p class="jtbd-quote">"FDA 21 CFR Part 11 compliant data logging requested by 3 accounts"</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 2: Pain Priority Matrix -->
-      <div class="module-block">
-        <div class="module-header">
-          <div class="module-num">2</div>
-          <div class="module-title">Pain priority matrix</div>
-        </div>
-        <div class="module-body">
-          <table class="pain-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Pain</th>
-                <th>Severity</th>
-                <th>Frequency</th>
-                <th>Current satisfaction</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Chemical resistance under CIP cleaning</td>
-                <td><span class="sev-pill sev-critical">Critical</span></td>
-                <td>High</td>
-                <td>Low</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Plug-and-play exchange without revalidation</td>
-                <td><span class="sev-pill sev-high">High</span></td>
-                <td>High</td>
-                <td><span class="sev-pill sev-none">None available in market</span></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>ATEX Zone 1 certification</td>
-                <td><span class="sev-pill sev-high">High</span></td>
-                <td>High &middot; 7 of 9 RFQs</td>
-                <td>Low (Zone 2 only)</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>IQ/OQ/PQ validation documentation package</td>
-                <td><span class="sev-pill sev-medium">Medium</span></td>
-                <td>Medium</td>
-                <td>Low</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Module 3: Buyer Role Analysis -->
-      <div class="module-block">
-        <div class="module-header">
-          <div class="module-num">3</div>
-          <div class="module-title">Buyer role analysis</div>
-        </div>
-        <div class="module-body">
-          <div class="role-grid">
-
-            <div class="role-card">
-              <p class="role-label">Economic buyer</p>
-              <p class="role-title">Operations Director / Head of Manufacturing</p>
-              <p class="role-body">Driven by production uptime and revalidation cost avoidance. Decision weight increases significantly when CHF cost of revalidation is quantified.</p>
-            </div>
-
-            <div class="role-card">
-              <p class="role-label">Technical buyer</p>
-              <p class="role-title">Process / Instrumentation Engineer</p>
-              <p class="role-body">Driven by HART protocol, IO-Link, hygienic design compliance, IP69K, ATEX Zone 1. Most active in RFQ specification writing.</p>
-            </div>
-
-            <div class="role-card">
-              <p class="role-label">End user</p>
-              <p class="role-title">Maintenance / Production team</p>
-              <p class="role-body">Driven by installation ease, calibration interval, physical connection type. Often absent from procurement conversation but influences repeat purchase decisions.</p>
-            </div>
-
-            <div class="role-card">
-              <p class="role-label">Quality and regulatory</p>
-              <p class="role-title">Quality Manager / Regulatory Affairs</p>
-              <p class="role-body">Driven by FDA 21 CFR Part 11, IQ/OQ/PQ documentation, validation lifecycle management. Effective veto power in pharmaceutical sector.</p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 4: PMF Signal Score -->
-      <div class="module-block">
-        <div class="module-header">
-          <div class="module-num">4</div>
-          <div class="module-title">PMF signal score</div>
-        </div>
-        <div class="module-body">
-          <div class="pmf-score-block">
-            <div>
-              <div class="pmf-score-num">7.2</div>
-              <div class="pmf-score-label">out of 10</div>
-            </div>
-            <div style="flex:1;">
-              <p style="color:var(--navy);font-size:14px;font-weight:600;margin-bottom:6px;">Medium-high confidence signal</p>
-              <p style="color:var(--gray-text);font-size:13px;line-height:1.6;">Based on 5 sources including 3 customer interviews and 9 RFQ data points. Strong leading signals present; lagging confirmation emerging.</p>
-            </div>
-          </div>
-
-          <div class="pmf-signals-grid">
-            <div class="pmf-signal-group">
-              <p class="pmf-signal-heading">Leading signals (strong)</p>
-              <div class="pmf-signal-item">
-                <span class="pmf-signal-dot pmf-signal-dot--lead"></span>
-                <span><strong style="color:var(--navy);">Unsolicited problem sharing:</strong> 3 accounts described revalidation cost in specific CHF figures without being asked</span>
-              </div>
-              <div class="pmf-signal-item">
-                <span class="pmf-signal-dot pmf-signal-dot--lead"></span>
-                <span><strong style="color:var(--navy);">Reference willingness:</strong> 2 customers offered to participate in co-development for plug-and-play exchange concept</span>
-              </div>
-            </div>
-            <div class="pmf-signal-group">
-              <p class="pmf-signal-heading">Lagging signals (emerging)</p>
-              <div class="pmf-signal-item">
-                <span class="pmf-signal-dot pmf-signal-dot--lag"></span>
-                <span><strong style="color:var(--navy);">Repeat specification:</strong> ATEX Zone 1 and hygienic design appearing in 7 of 9 RFQs signals market consensus forming</span>
-              </div>
-              <div class="pmf-signal-item">
-                <span class="pmf-signal-dot pmf-signal-dot--lag"></span>
-                <span><strong style="color:var(--navy);">Approved vendor status:</strong> not yet established for pharmaceutical sector</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="pmf-confidence">
-            <strong>Confidence note:</strong> Based on 5 sources, includes 3 customer interviews and 9 RFQ data points. Medium-high confidence. Recommend 3 to 5 additional interviews in pharmaceutical sector to validate plug-and-play exchange as primary unmet need before committing to development investment.
-          </div>
-        </div>
-      </div>
-
-      <!-- Module 5: Validation Roadmap -->
-      <div class="module-block">
-        <div class="module-header">
-          <div class="module-num">5</div>
-          <div class="module-title">Validation roadmap</div>
-        </div>
-        <div class="module-body">
-          <div class="roadmap-list">
-
-            <div class="roadmap-item">
-              <div class="roadmap-num">1</div>
-              <p class="roadmap-action">Validate the plug-and-play exchange hypothesis</p>
-              <p class="roadmap-detail">
-                <strong>Suggested interview question:</strong> "If a sensor could be exchanged without triggering a full revalidation event &mdash; with stored calibration certificate and IQ/OQ documentation pre-packaged &mdash; how would that change your procurement and maintenance planning?"<br><br>
-                <strong>Target:</strong> 5 production engineers at pharmaceutical contract manufacturers in DACH region.
-              </p>
-            </div>
-
-            <div class="roadmap-item">
-              <div class="roadmap-num">2</div>
-              <p class="roadmap-action">Quantify the ATEX Zone 1 addressable market</p>
-              <p class="roadmap-detail">
-                <strong>Gap:</strong> No behavioral data on actual purchase frequency at Zone 1 requirement.<br><br>
-                <strong>Recommended action:</strong> Run win/loss analysis on last 12 months of quotes where Zone 1 was specified.
-              </p>
-            </div>
-
-            <div class="roadmap-item">
-              <div class="roadmap-num">3</div>
-              <p class="roadmap-action">Assess competitive response to hygienic design gap</p>
-              <p class="roadmap-detail">
-                <strong>Gap:</strong> No competitive intelligence on EHEDG/3-A certified alternatives from main competitors.<br><br>
-                <strong>Recommended action:</strong> BD team to conduct competitive teardown on top 3 competitors' hygienic product lines.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /demo-output -->
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     SECTION 3: LIVE MODE
-     ═══════════════════════════════════════════ -->
-<section class="tool-section tool-section--alt" id="live-section">
+<section class="tool-section" id="live-section">
   <div class="tool-section-inner">
     <p class="section-eyebrow">Live mode</p>
-    <h2 class="section-heading">Run your own analysis</h2>
-    <p class="section-note">Your data stays in your browser. The API key is used only for this session and is never stored.</p>
+    <h2 class="section-heading">Analyse your data</h2>
+    <p class="section-note">Paste your own VoC inputs from up to five internal sources. Add your Gemini API key to run the analysis. Optionally enrich with live market intelligence from the web.</p>
+    <p class="privacy-note">Your data stays in your browser. The API key is used only for this session and is never stored.</p>
 
     <div class="live-banner">
       This tool is scoped to B2B engineered physical goods: sensors, connectors, PCBs, measurement instruments, pumps, actuators, drives, valves, and sealing systems. It does not replace QFD or House of Quality. It produces the structured customer requirements that feed into the HoQ left column. The QFD session itself still requires human experts from quality, engineering, sales, and business development.
@@ -1117,6 +586,7 @@
         class="form-textarea form-textarea--tall"
         id="product-desc"
         placeholder="Describe the product or technology you are analysing. Example: a new flexible pressure sensor for food processing equipment"
+        oninput="updateRunBtn()"
       ></textarea>
     </div>
 
@@ -1146,6 +616,18 @@
       >
     </div>
 
+    <!-- Enrich toggle -->
+    <div class="toggle-row">
+      <label class="toggle-switch">
+        <input type="checkbox" id="enrich-toggle">
+        <span class="toggle-slider"></span>
+      </label>
+      <div>
+        <p class="toggle-label">Enrich with market intelligence</p>
+        <p class="toggle-desc">Searches publicly available market data, industry publications, and competitor information relevant to your product description. Powered by Gemini's web grounding.</p>
+      </div>
+    </div>
+
     <!-- Run -->
     <button class="run-btn" id="run-btn" onclick="runAnalysis()" disabled>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -1159,7 +641,7 @@
 
     <div class="error-msg" id="error-msg"></div>
 
-    <!-- Live output -->
+    <!-- Live output: same six-panel layout as the demo modal -->
     <div class="output-area hidden" id="live-output"></div>
 
     <div class="scope-note">
@@ -1170,7 +652,7 @@
 
 
 <!-- AUTHOR BIO -->
-<section style="background:var(--white);padding:0 0 0;">
+<section style="background:var(--white);">
   <div class="tool-author">
     <div class="author-card">
       <div class="author-avatar">RA</div>
@@ -1191,40 +673,319 @@
   </div>
 </footer>
 
+
+<!-- ═══════════════════════════════════════════
+     DEMO MODAL (sample analysis)
+     ═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="demo-modal" role="dialog" aria-modal="true" aria-label="Sample VoC analysis">
+  <div class="modal-box modal-dash">
+    <div class="modal-hdr">
+      <div class="modal-hdr-left">
+        <h2 class="modal-title">Sample analysis</h2>
+        <p style="color:var(--gray-muted);font-size:13px;font-style:italic;margin-top:4px;">Miniaturized pressure transmitter for pharmaceutical cleanroom process monitoring</p>
+      </div>
+      <button class="modal-close" onclick="closeDemoModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="dash-disclaimer">
+      Static sample output, no API key needed. Run the analysis with your own data in the section below.
+    </div>
+    <div id="demo-panels"></div>
+  </div>
+</div>
+
+
 <script>
 // ── SLIDE DECK ─────────────────────────────────────────────────────
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.slide-dot');
+const slideDots = document.querySelectorAll('.slide-deck .slide-dots .slide-dot');
 
 function showSlide(n) {
   slides.forEach((s, i) => s.classList.toggle('active', i === n));
-  dots.forEach((d, i) => d.classList.toggle('active', i === n));
+  slideDots.forEach((d, i) => d.classList.toggle('active', i === n));
   document.getElementById('prev-btn').disabled = n === 0;
   document.getElementById('next-btn').disabled = n === slides.length - 1;
   currentSlide = n;
 }
-
 function nextSlide() { if (currentSlide < slides.length - 1) showSlide(currentSlide + 1); }
 function prevSlide() { if (currentSlide > 0) showSlide(currentSlide - 1); }
 function goToSlide(n) { showSlide(n); }
 
 
-// ── COLLAPSIBLE INPUT PANELS ────────────────────────────────────────
-function togglePanel(id) {
-  document.getElementById(id).classList.toggle('open');
+// ── SHARED HELPERS ─────────────────────────────────────────────────
+const esc = (s) => String(s == null ? '' : s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const SEV_COLOR = { Critical: '#0A6B5E', High: '#168A78', Medium: '#5FBEB0', Low: '#A9DED6' };
+const SEV_SCORE = { Critical: 100, High: 76, Medium: 52, Low: 30 };
+
+
+// ── SIX PANEL BUILDERS ─────────────────────────────────────────────
+function buildSources(sources) {
+  sources = sources || [];
+  return `<p class="panel-title">Sources processed</p>
+    <p class="panel-sub">Expand each card to read the raw input</p>
+    <div class="input-panels">` +
+    sources.map((s, i) => `
+      <div class="input-panel">
+        <div class="input-panel-header" onclick="this.parentElement.classList.toggle('open')">
+          <div class="input-panel-left">
+            <div class="input-panel-num">${i + 1}</div>
+            <div>
+              <p class="input-panel-label">${esc(s.type)}</p>
+              ${s.sub ? `<p class="input-panel-sub">${esc(s.sub)}</p>` : ''}
+            </div>
+          </div>
+          <span class="input-panel-chevron">&#8964;</span>
+        </div>
+        <div class="input-panel-body"><div class="input-panel-text">${esc(s.text)}</div></div>
+      </div>`).join('') +
+    `</div>`;
+}
+
+function buildJtbd(items) {
+  items = items || [];
+  const freqClass = (j) => {
+    const lvl = j.freqLevel || (String(j.frequency || '').toLowerCase().startsWith('high') ? 'high' : 'medium');
+    return lvl === 'high' ? 'meta-pill--freq' : 'meta-pill--freq-med';
+  };
+  return `<p class="panel-title">Jobs to be Done</p>
+    <p class="panel-sub">Prioritized jobs extracted across the sources</p>
+    <div class="jtbd-grid">` +
+    items.map(j => `
+      <div class="jtbd-card">
+        <p class="jtbd-statement">${esc(j.statement)}</p>
+        <div class="jtbd-meta">
+          <span class="meta-pill meta-pill--type">${esc(j.type)}</span>
+          <span class="meta-pill ${freqClass(j)}">${esc(j.frequency)}</span>
+          <span class="meta-pill meta-pill--role">${esc(j.buyerRole)}</span>
+        </div>
+        ${j.quote ? `<p class="jtbd-quote">"${esc(j.quote)}"</p>` : ''}
+      </div>`).join('') +
+    `</div>`;
+}
+
+function buildPains(pains) {
+  pains = pains || [];
+  return `<p class="panel-title">Pain priority</p>
+    <p class="panel-sub">Ranked by severity. Bar length reflects severity score, teal deepens with severity</p>
+    <div class="pain-chart">` +
+    pains.map(p => {
+      const sev = p.severity || 'Medium';
+      const color = SEV_COLOR[sev] || '#5FBEB0';
+      const score = SEV_SCORE[sev] || 50;
+      return `
+      <div class="pain-row">
+        <div class="pain-row-top">
+          <span class="pain-name">${esc(p.name)}</span>
+          <span class="pain-tag">${esc(sev)}${p.frequency ? ' · ' + esc(p.frequency) : ''}</span>
+        </div>
+        <div class="pain-track"><div class="pain-fill" style="width:${score}%;background:${color};">${esc(sev)}</div></div>
+      </div>`;
+    }).join('') +
+    `</div>`;
+}
+
+function buildRoles(roles) {
+  roles = roles || [];
+  return `<p class="panel-title">Buyer role analysis</p>
+    <p class="panel-sub">Who shapes the decision, what drives them, and how much weight they carry</p>
+    <div class="role-grid">` +
+    roles.map(r => `
+      <div class="role-card">
+        <p class="role-label">${esc(r.roleType)}</p>
+        <p class="role-title">${esc(r.roleTitle)}</p>
+        <p class="role-body">${esc(r.drives)}</p>
+        ${r.influence ? `<p class="role-influence"><strong>Influence:</strong> ${esc(r.influence)}</p>` : ''}
+      </div>`).join('') +
+    `</div>`;
+}
+
+function buildGauge(score) {
+  const val = Math.max(0, Math.min(10, Number(score) || 0));
+  const len = Math.PI * 80;
+  const dash = (val / 10 * len).toFixed(1);
+  return `<svg viewBox="0 0 200 124" width="210" height="130" role="img" aria-label="PMF score ${esc(String(score))} out of 10">
+    <path d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="#E8EDF2" stroke-width="16" stroke-linecap="round"/>
+    <path d="M20,100 A80,80 0 0 1 180,100" fill="none" stroke="#0A6B5E" stroke-width="16" stroke-linecap="round" stroke-dasharray="${dash} 1000"/>
+    <text x="100" y="88" text-anchor="middle" font-size="36" font-weight="700" fill="#1F4E79" font-family="Inter, sans-serif">${esc(String(score))}</text>
+    <text x="100" y="110" text-anchor="middle" font-size="12" fill="#718096" font-family="Inter, sans-serif">out of 10</text>
+  </svg>`;
+}
+
+function signalItem(s, kind) {
+  const label = (s && s.label) ? `<strong style="color:var(--navy);">${esc(s.label)}:</strong> ` : '';
+  const text = (s && s.text != null) ? esc(s.text) : esc(s);
+  return `<div class="pmf-signal-item"><span class="pmf-signal-dot pmf-signal-dot--${kind}"></span><span>${label}${text}</span></div>`;
+}
+
+function buildPmf(p) {
+  p = p || {};
+  const lead = (p.leading || []).map(s => signalItem(s, 'lead')).join('');
+  const lag = (p.lagging || []).map(s => signalItem(s, 'lag')).join('');
+  return `<p class="panel-title">PMF signal score</p>
+    <p class="panel-sub">Leading and lagging signals read from the aggregated sources</p>
+    <div class="pmf-gauge-wrap">
+      ${buildGauge(p.score)}
+      ${p.label ? `<p style="color:var(--navy);font-size:14px;font-weight:600;margin-top:4px;">${esc(p.label)}</p>` : ''}
+    </div>
+    <div class="pmf-signals-grid">
+      <div class="pmf-signal-group"><p class="pmf-signal-heading">Leading signals (strong)</p>${lead}</div>
+      <div class="pmf-signal-group"><p class="pmf-signal-heading">Lagging signals (emerging)</p>${lag}</div>
+    </div>
+    ${p.confidence ? `<div class="pmf-confidence"><strong>Confidence note:</strong> ${esc(p.confidence)}</div>` : ''}`;
+}
+
+function buildJourney(j) {
+  const stages = (j && j.stages) || [];
+  const max = Math.max(1, ...stages.map(s => Number(s.count) || 0));
+  const cells = stages.map(s => {
+    const c = Number(s.count) || 0;
+    const intensity = c / max;
+    const bg = `rgba(10,107,94,${(0.12 + 0.88 * intensity).toFixed(3)})`;
+    const sig = s.signal ? `<div class="journey-signal">${esc(s.signal)}</div>` : '';
+    return `<div class="journey-stage">
+        <div class="journey-heat" style="background:${bg};" title="${c} signals"></div>
+        <div class="journey-label">${esc(s.stage)}</div>
+        <div class="journey-count">${c} signals</div>
+        ${sig}
+      </div>`;
+  }).join('');
+  return `<p class="panel-title">Where in the customer journey does pain concentrate?</p>
+    <p class="panel-sub">Heat intensity reflects how many VoC signals map to each stage</p>
+    <div class="journey-scroll"><div class="journey-grid">${cells}</div></div>`;
+}
+
+function buildSixPanels(d) {
+  const tabs = ['Sources', 'Jobs to be Done', 'Pain priority', 'Buyer roles', 'PMF signal', 'Customer journey'];
+  const panels = [
+    buildSources(d.sources),
+    buildJtbd(d.jtbd),
+    buildPains(d.pains),
+    buildRoles(d.buyerRoles),
+    buildPmf(d.pmf),
+    buildJourney(d.journey)
+  ];
+  const tabBar = `<div class="dash-tabs">` +
+    tabs.map((t, i) => `<button class="dash-tab${i === 0 ? ' active' : ''}" data-tab>${t}</button>`).join('') +
+    `</div>`;
+  const stack = `<div class="panel-stack">` +
+    panels.map((p, i) => `<div class="modal-panel${i === 0 ? ' active' : ''}" data-panel>${p}</div>`).join('') +
+    `</div>`;
+  const dots = `<div class="slide-dots">` +
+    tabs.map((_, i) => `<span class="slide-dot${i === 0 ? ' active' : ''}" data-dot></span>`).join('') +
+    `</div>`;
+  const nav = `<div class="panel-nav">
+      <button class="slide-btn" data-prev><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg> Previous</button>
+      ${dots}
+      <button class="slide-btn" data-next>Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>`;
+  const note = d.hoqNote ? `<div class="pmf-confidence" style="margin-top:16px;">${esc(d.hoqNote)}</div>` : '';
+  return tabBar + stack + nav + note;
+}
+
+function initPanelViewer(root) {
+  const panels = root.querySelectorAll('[data-panel]');
+  const tabs = root.querySelectorAll('[data-tab]');
+  const dots = root.querySelectorAll('[data-dot]');
+  const prev = root.querySelector('[data-prev]');
+  const next = root.querySelector('[data-next]');
+  let idx = 0;
+  function show(i) {
+    idx = Math.max(0, Math.min(panels.length - 1, i));
+    panels.forEach((p, k) => p.classList.toggle('active', k === idx));
+    tabs.forEach((t, k) => t.classList.toggle('active', k === idx));
+    dots.forEach((dt, k) => dt.classList.toggle('active', k === idx));
+    if (prev) prev.disabled = idx === 0;
+    if (next) next.disabled = idx === panels.length - 1;
+  }
+  tabs.forEach((t, k) => t.addEventListener('click', () => show(k)));
+  dots.forEach((dt, k) => dt.addEventListener('click', () => show(k)));
+  if (prev) prev.addEventListener('click', () => show(idx - 1));
+  if (next) next.addEventListener('click', () => show(idx + 1));
+  root._show = show;
+  show(0);
 }
 
 
-// ── DEMO OUTPUT TOGGLE ─────────────────────────────────────────────
-let demoVisible = false;
-function toggleDemoOutput() {
-  demoVisible = !demoVisible;
-  const out = document.getElementById('demo-output');
-  const btn = document.getElementById('view-btn-text');
-  out.classList.toggle('hidden', !demoVisible);
-  btn.textContent = demoVisible ? 'Hide analysis' : 'View analysis';
+// ── SAMPLE DATA (demo) ─────────────────────────────────────────────
+const SAMPLE = {
+  sources: [
+    { type: 'Quality team data', sub: 'Field complaint summary Q2 to Q3', text: 'Field complaint summary Q2 to Q3: 18 incidents of sensor drift after CIP (cleaning in place) cycles using NaOH 2% at 80°C. Customers report recalibration required every 3 months instead of specified 12-month interval. Warranty claims concentrated in 3 food and beverage accounts. Root cause investigation ongoing. Suspected diaphragm material degradation under alkaline cleaning chemistry.' },
+    { type: 'Sales team CRM notes', sub: 'Pharma, food processing, biotech accounts', text: 'Three separate accounts (pharma, food processing, biotech) requested FDA 21 CFR Part 11 compliant data logging this quarter. Current model does not support it. Lost one deal to a competitor explicitly on this basis. Two more accounts evaluating alternatives. Additional recurring request: HART protocol overlay on 4-20mA output. Our model is 4-20mA only, no HART. Came up in 5 of last 8 technical discussions.' },
+    { type: 'Business development notes', sub: 'Market visit summary, DACH region', text: 'Market visit summary: 6 customer site visits across DACH region, pharmaceutical and biotech sector. Primary finding: validation lifecycle is the biggest procurement pain point. Customers report 8 to 14 weeks for sensor qualification per site, which creates significant project delays. Several mentioned IQ/OQ/PQ documentation package as a purchasing decision factor, currently not available from us. Two R&D managers mentioned interest in flush-mount diaphragm variant for viscous media applications. Not in current portfolio.' },
+    { type: 'Market data and RFQ analysis', sub: '9 RFQs received in H1', text: 'Analysis of 9 RFQs received in H1: 7 of 9 specified ATEX Zone 1 certification requirement. Our current product is Zone 2 only. 6 of 9 required hygienic design (EHEDG or 3-A certification). 5 of 9 requested IO-Link or digital output option alongside 4-20mA. 4 of 9 required ingress protection IP69K, current product is IP67.' },
+    { type: 'Direct customer interview', sub: 'Process engineer, pharma contract manufacturer', text: 'Interview with process engineer, mid-size pharma contract manufacturer: Primary job is to ensure batch traceability compliance. Biggest pain is sensor exchange during production campaigns. Every swap triggers a revalidation event. Estimated cost per revalidation: CHF 15,000 to 25,000 in downtime and documentation. Ideal: a sensor that can be exchanged without triggering full revalidation, with stored calibration certificate. Not aware of any supplier offering this currently. Secondary pain: installation. Current threaded process connections require specialized tooling maintenance teams do not always have. Requested hygienic clamp connection as preferred option.' }
+  ],
+  jtbd: [
+    { statement: 'Ensure continuous batch traceability compliance without revalidation triggers', type: 'Functional', frequency: 'High · 4 of 5 sources', freqLevel: 'high', buyerRole: 'Quality / Regulatory Affairs', quote: 'Every sensor swap triggers a revalidation event, CHF 15,000 to 25,000 in downtime' },
+    { statement: 'Maintain sensor accuracy through aggressive CIP cycles', type: 'Functional', frequency: 'High · 3 sources, 18 complaints', freqLevel: 'high', buyerRole: 'Production / Process Engineering', quote: 'Recalibration required every 3 months instead of 12-month interval' },
+    { statement: 'Reduce sensor qualification and procurement lead time', type: 'Functional', frequency: 'Medium · 3 sources', freqLevel: 'medium', buyerRole: 'Project Engineering / Procurement', quote: '8 to 14 weeks for sensor qualification per site creates significant project delays' },
+    { statement: 'Demonstrate regulatory compliance to internal and external auditors', type: 'Social / Organizational', frequency: 'Medium · 3 sources', freqLevel: 'medium', buyerRole: 'Quality Manager / Regulatory Affairs', quote: 'FDA 21 CFR Part 11 compliant data logging requested by 3 accounts' }
+  ],
+  pains: [
+    { name: 'Chemical resistance under CIP cleaning', severity: 'Critical', frequency: 'High frequency' },
+    { name: 'Plug-and-play exchange without revalidation', severity: 'High', frequency: 'High, none available in market' },
+    { name: 'ATEX Zone 1 certification', severity: 'High', frequency: 'High, 7 of 9 RFQs' },
+    { name: 'IQ/OQ/PQ documentation package', severity: 'Medium', frequency: 'Medium' }
+  ],
+  buyerRoles: [
+    { roleType: 'Economic buyer', roleTitle: 'Operations Director / Head of Manufacturing', drives: 'Driven by production uptime and revalidation cost avoidance. Decision weight increases significantly when the CHF cost of revalidation is quantified.', influence: 'High, releases the budget' },
+    { roleType: 'Technical buyer', roleTitle: 'Process / Instrumentation Engineer', drives: 'Driven by HART protocol, IO-Link, hygienic design compliance, IP69K, and ATEX Zone 1. Most active in RFQ specification writing.', influence: 'High, writes the specification' },
+    { roleType: 'End user', roleTitle: 'Maintenance / Production team', drives: 'Driven by installation ease, calibration interval, and physical connection type. Often absent from the procurement conversation but influences repeat purchase decisions.', influence: 'Medium, shapes repeat purchase' },
+    { roleType: 'Quality and regulatory', roleTitle: 'Quality Manager / Regulatory Affairs', drives: 'Driven by FDA 21 CFR Part 11, IQ/OQ/PQ documentation, and validation lifecycle management.', influence: 'Effective veto power in the pharmaceutical sector' }
+  ],
+  pmf: {
+    score: '7.2',
+    label: 'Medium-high confidence signal',
+    leading: [
+      { label: 'Unsolicited problem sharing', text: '3 accounts described revalidation cost in specific CHF figures without being asked' },
+      { label: 'Reference willingness', text: '2 customers offered to participate in co-development for the plug-and-play exchange concept' }
+    ],
+    lagging: [
+      { label: 'Repeat specification', text: 'ATEX Zone 1 and hygienic design appearing in 7 of 9 RFQs signals market consensus forming' },
+      { label: 'Approved vendor status', text: 'not yet established for the pharmaceutical sector' }
+    ],
+    confidence: 'Based on 5 sources, including 3 customer interviews and 9 RFQ data points. Medium-high confidence. Recommend 3 to 5 additional interviews in the pharmaceutical sector to validate plug-and-play exchange as the primary unmet need before committing to development investment.'
+  },
+  journey: {
+    stages: [
+      { stage: 'Problem awareness', count: 2, signal: '' },
+      { stage: 'Solution search', count: 1, signal: '' },
+      { stage: 'Technical evaluation', count: 5, signal: 'ATEX Zone 1 specified in 7 of 9 RFQs' },
+      { stage: 'Commercial qualification', count: 2, signal: '' },
+      { stage: 'Implementation', count: 1, signal: '' },
+      { stage: 'Operation', count: 4, signal: 'CIP chemical resistance failure, 18 field incidents' }
+    ]
+  },
+  hoqNote: 'Going from this structured VoC to a House of Quality requires human expert input from quality, engineering, sales, and business development.'
+};
+
+
+// ── DEMO MODAL ─────────────────────────────────────────────────────
+function openDemoModal() {
+  const m = document.getElementById('demo-modal');
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (m._viewer) m._viewer(0);
 }
+function closeDemoModal() {
+  document.getElementById('demo-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('demo-modal').addEventListener('click', e => {
+  if (e.target.id === 'demo-modal') closeDemoModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDemoModal();
+});
+
+(function initDemo() {
+  const host = document.getElementById('demo-panels');
+  host.innerHTML = buildSixPanels(SAMPLE);
+  initPanelViewer(host);
+  document.getElementById('demo-modal')._viewer = host._show;
+})();
 
 
 // ── LIVE MODE: SOURCES ─────────────────────────────────────────────
@@ -1235,7 +996,6 @@ const SOURCE_TYPES = [
   'Market data and RFQ analysis',
   'Direct customer interview'
 ];
-
 let sourceCount = 0;
 
 function addSource() {
@@ -1304,11 +1064,9 @@ function renumberSources() {
 function updateSourceCount() {
   document.getElementById('source-count').textContent = sourceCount;
 }
-
 function updateAddBtn() {
   document.getElementById('add-source-btn').disabled = sourceCount >= 5;
 }
-
 function updateRunBtn() {
   const apiKey = document.getElementById('api-key').value.trim();
   const productDesc = document.getElementById('product-desc').value.trim();
@@ -1327,6 +1085,7 @@ function updateRunBtn() {
 async function runAnalysis() {
   const apiKey = document.getElementById('api-key').value.trim();
   const productDesc = document.getElementById('product-desc').value.trim();
+  const enrich = document.getElementById('enrich-toggle').checked;
 
   const entries = document.querySelectorAll('.source-entry');
   const sources = [];
@@ -1355,56 +1114,34 @@ async function runAnalysis() {
 
 Product under analysis: ${productDesc}
 
-Your task: analyse the following VoC data from ${sources.length} sources and return a structured JSON object. Apply JTBD methodology. Weight requirements on a 1 to 9 importance scale. Classify each signal by buyer role. Apply B2B industrial dynamics: multi-stakeholder buying, 6 to 18 month sales cycles, compliance-driven purchasing, cost-of-ownership as primary criterion. Scope is B2B engineered physical goods only.
+Analyse the following VoC data from ${sources.length} sources and return a structured JSON object. Apply JTBD methodology. Weight requirements on a 1 to 9 importance scale. Classify each signal by buyer role. Apply B2B industrial dynamics: multi-stakeholder buying, 6 to 18 month sales cycles, compliance-driven purchasing, and cost-of-ownership as a primary criterion. Scope is B2B engineered physical goods only.
+
+Also classify each requirement and pain item by customer journey stage. Use exactly these six stages in this order: Problem awareness, Solution search, Technical evaluation, Commercial qualification, Implementation, Operation. For each stage, return how many VoC signals map to it and one short representative signal for the stages that carry the most signals.
+
+Do not use em-dashes anywhere in your output. Use commas or periods instead.
 
 VoC DATA:
 
 ${sourcesText}
 
-Return ONLY a valid JSON object with this exact structure. No markdown fences, no explanation, just the JSON:
+Return ONLY a valid JSON object with this exact structure. No markdown fences, no explanation:
 
 {
-  "jtbd": [
-    {
-      "statement": "string",
-      "type": "Functional | Social/Organizational | Emotional",
-      "frequency": "string (e.g. High · 3 of 4 sources)",
-      "buyerRole": "string",
-      "quote": "string (a short representative quote or paraphrase from the data)"
-    }
-  ],
-  "painMatrix": [
-    {
-      "pain": "string",
-      "severity": "Critical | High | Medium | Low",
-      "frequency": "string",
-      "currentSatisfaction": "string"
-    }
-  ],
-  "buyerRoles": [
-    {
-      "roleType": "string (e.g. Economic buyer)",
-      "roleTitle": "string (e.g. Operations Director)",
-      "description": "string"
-    }
-  ],
-  "pmfScore": {
-    "score": number,
-    "label": "string",
-    "leadingSignals": ["string"],
-    "laggingSignals": ["string"],
-    "confidenceNote": "string"
-  },
-  "validationRoadmap": [
-    {
-      "action": "string",
-      "detail": "string"
-    }
-  ],
-  "hoqNote": "string (one sentence stating that going from this structured VoC to a House of Quality requires human expert input from quality, engineering, sales, and business development)"
+  "jtbd": [ { "statement": "string", "type": "Functional | Social/Organizational | Emotional", "frequency": "string, for example High, 3 of 4 sources", "buyerRole": "string", "quote": "string" } ],
+  "pains": [ { "name": "string", "severity": "Critical | High | Medium | Low", "frequency": "string" } ],
+  "buyerRoles": [ { "roleType": "string, for example Economic buyer", "roleTitle": "string", "drives": "string", "influence": "string" } ],
+  "pmf": { "score": number, "label": "string", "leading": [ { "label": "string", "text": "string" } ], "lagging": [ { "label": "string", "text": "string" } ], "confidence": "string" },
+  "journey": { "stages": [ { "stage": "string", "count": number, "signal": "string" } ] },
+  "hoqNote": "string, one sentence stating that going from this structured VoC to a House of Quality requires human expert input from quality, engineering, sales, and business development"
 }
 
-Return between 3 and 5 items in jtbd. Return between 3 and 5 items in painMatrix. Return 3 to 4 items in buyerRoles. Return 2 to 3 items in leadingSignals and laggingSignals. Return 2 to 3 items in validationRoadmap.`;
+Return 3 to 5 items in jtbd. Return 3 to 5 items in pains. Return 3 to 4 items in buyerRoles. Return 2 to 3 items in leading and lagging. Return all six journey stages in the specified order.`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.3, maxOutputTokens: 4000 }
+  };
+  if (enrich) body.tools = [{ google_search: {} }];
 
   try {
     const response = await fetch(
@@ -1412,10 +1149,7 @@ Return between 3 and 5 items in jtbd. Return between 3 and 5 items in painMatrix
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.3, maxOutputTokens: 3000 }
-        })
+        body: JSON.stringify(body)
       }
     );
 
@@ -1425,9 +1159,10 @@ Return between 3 and 5 items in jtbd. Return between 3 and 5 items in painMatrix
     }
 
     const data = await response.json();
-    const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    const parts = data?.candidates?.[0]?.content?.parts || [];
+    const raw = parts.map(p => p.text || '').join('').trim();
 
-    if (!raw) throw new Error('No content returned from API.');
+    if (!raw) throw new Error('No content returned from the API.');
 
     const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     let result;
@@ -1437,7 +1172,18 @@ Return between 3 and 5 items in jtbd. Return between 3 and 5 items in painMatrix
       throw new Error('Could not parse the response as JSON. The model may have returned unexpected formatting.');
     }
 
-    renderLiveOutput(result);
+    const liveData = {
+      sources: sources.map(s => ({ type: s.type, text: s.data })),
+      jtbd: result.jtbd,
+      pains: result.pains,
+      buyerRoles: result.buyerRoles,
+      pmf: result.pmf,
+      journey: result.journey,
+      hoqNote: result.hoqNote
+    };
+
+    outputEl.innerHTML = buildSixPanels(liveData);
+    initPanelViewer(outputEl);
     loadingEl.classList.remove('visible');
     outputEl.classList.remove('hidden');
 
@@ -1448,137 +1194,6 @@ Return between 3 and 5 items in jtbd. Return between 3 and 5 items in painMatrix
   } finally {
     document.getElementById('run-btn').disabled = false;
   }
-}
-
-
-// ── RENDER LIVE OUTPUT ─────────────────────────────────────────────
-function renderLiveOutput(r) {
-  const out = document.getElementById('live-output');
-
-  const freqClass = (f) => {
-    if (!f) return 'meta-pill--freq-med';
-    return f.toLowerCase().startsWith('high') ? 'meta-pill--freq' : 'meta-pill--freq-med';
-  };
-
-  const sevClass = (s) => {
-    if (!s) return '';
-    const sl = s.toLowerCase();
-    if (sl === 'critical') return 'sev-critical';
-    if (sl === 'high') return 'sev-high';
-    if (sl === 'medium') return 'sev-medium';
-    return 'sev-none';
-  };
-
-  const esc = (s) => String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-  // Module 1
-  const jtbdCards = (r.jtbd || []).map(j => `
-    <div class="jtbd-card">
-      <p class="jtbd-statement">${esc(j.statement)}</p>
-      <div class="jtbd-meta">
-        <span class="meta-pill meta-pill--type">${esc(j.type)}</span>
-        <span class="meta-pill ${freqClass(j.frequency)}">${esc(j.frequency)}</span>
-        <span class="meta-pill meta-pill--role">${esc(j.buyerRole)}</span>
-      </div>
-      <p class="jtbd-quote">"${esc(j.quote)}"</p>
-    </div>`).join('');
-
-  // Module 2
-  const painRows = (r.painMatrix || []).map((p, i) => `
-    <tr>
-      <td>${i + 1}</td>
-      <td>${esc(p.pain)}</td>
-      <td><span class="sev-pill ${sevClass(p.severity)}">${esc(p.severity)}</span></td>
-      <td>${esc(p.frequency)}</td>
-      <td>${esc(p.currentSatisfaction)}</td>
-    </tr>`).join('');
-
-  // Module 3
-  const roleCards = (r.buyerRoles || []).map(b => `
-    <div class="role-card">
-      <p class="role-label">${esc(b.roleType)}</p>
-      <p class="role-title">${esc(b.roleTitle)}</p>
-      <p class="role-body">${esc(b.description)}</p>
-    </div>`).join('');
-
-  // Module 4
-  const pmf = r.pmfScore || {};
-  const leadItems = (pmf.leadingSignals || []).map(s => `
-    <div class="pmf-signal-item">
-      <span class="pmf-signal-dot pmf-signal-dot--lead"></span>
-      <span>${esc(s)}</span>
-    </div>`).join('');
-  const lagItems = (pmf.laggingSignals || []).map(s => `
-    <div class="pmf-signal-item">
-      <span class="pmf-signal-dot pmf-signal-dot--lag"></span>
-      <span>${esc(s)}</span>
-    </div>`).join('');
-
-  // Module 5
-  const roadmapItems = (r.validationRoadmap || []).map((v, i) => `
-    <div class="roadmap-item">
-      <div class="roadmap-num">${i + 1}</div>
-      <p class="roadmap-action">${esc(v.action)}</p>
-      <p class="roadmap-detail">${esc(v.detail)}</p>
-    </div>`).join('');
-
-  // HoQ note
-  const hoqNote = r.hoqNote
-    ? `<div class="pmf-confidence" style="margin-top:16px;">${esc(r.hoqNote)}</div>`
-    : '';
-
-  out.innerHTML = `
-    <div class="module-block">
-      <div class="module-header"><div class="module-num">1</div><div class="module-title">Jobs to be Done</div></div>
-      <div class="module-body"><div class="jtbd-grid">${jtbdCards}</div></div>
-    </div>
-
-    <div class="module-block">
-      <div class="module-header"><div class="module-num">2</div><div class="module-title">Pain priority matrix</div></div>
-      <div class="module-body">
-        <table class="pain-table">
-          <thead><tr><th>#</th><th>Pain</th><th>Severity</th><th>Frequency</th><th>Current satisfaction</th></tr></thead>
-          <tbody>${painRows}</tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="module-block">
-      <div class="module-header"><div class="module-num">3</div><div class="module-title">Buyer role analysis</div></div>
-      <div class="module-body"><div class="role-grid">${roleCards}</div></div>
-    </div>
-
-    <div class="module-block">
-      <div class="module-header"><div class="module-num">4</div><div class="module-title">PMF signal score</div></div>
-      <div class="module-body">
-        <div class="pmf-score-block">
-          <div>
-            <div class="pmf-score-num">${esc(String(pmf.score || ''))}</div>
-            <div class="pmf-score-label">out of 10</div>
-          </div>
-          <div style="flex:1;">
-            <p style="color:var(--navy);font-size:14px;font-weight:600;margin-bottom:6px;">${esc(pmf.label || '')}</p>
-          </div>
-        </div>
-        <div class="pmf-signals-grid">
-          <div class="pmf-signal-group">
-            <p class="pmf-signal-heading">Leading signals</p>${leadItems}
-          </div>
-          <div class="pmf-signal-group">
-            <p class="pmf-signal-heading">Lagging signals</p>${lagItems}
-          </div>
-        </div>
-        <div class="pmf-confidence">${esc(pmf.confidenceNote || '')}</div>
-      </div>
-    </div>
-
-    <div class="module-block">
-      <div class="module-header"><div class="module-num">5</div><div class="module-title">Validation roadmap</div></div>
-      <div class="module-body"><div class="roadmap-list">${roadmapItems}</div></div>
-    </div>
-
-    ${hoqNote}
-  `;
 }
 
 
