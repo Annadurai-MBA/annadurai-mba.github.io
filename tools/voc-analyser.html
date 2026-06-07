@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice of Customer Analyser | Raja Annadurai</title>
+  <meta name="description" content="Aggregate B2B industrial VoC from five sources, weight by importance, and output a requirements list ready for House of Quality input.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* ── TOOL PAGE LAYOUT ── */
+    .tool-page { padding-top: 64px; }
+
+    .tool-hero {
+      background: var(--navy);
+      padding: 64px 24px 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .tool-hero-inner { max-width: 900px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      font-size: 13px; font-weight: 500; margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.9); }
+
+    .tool-category {
+      display: inline-block;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+    }
+
+    .tool-title {
+      font-size: clamp(26px, 4vw, 42px); font-weight: 700;
+      color: #fff; line-height: 1.2; letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .tool-subtitle {
+      color: rgba(255,255,255,0.7); font-size: 17px; line-height: 1.65;
+      max-width: 640px;
+    }
+
+    /* ── SECTION WRAPPERS ── */
+    .tool-section { padding: 72px 24px; }
+    .tool-section--alt { background: var(--off-white); }
+    .tool-section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-eyebrow {
+      color: var(--accent); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+    }
+
+    .section-heading {
+      color: var(--navy); font-size: 26px; font-weight: 700;
+      line-height: 1.3; margin-bottom: 8px;
+    }
+
+    .section-note {
+      color: var(--gray-muted); font-size: 15px; margin-bottom: 40px;
+    }
+
+    /* ── SLIDE DECK ── */
+    .slide-deck {
+      background: var(--white); border: 1px solid var(--gray-light);
+      border-radius: 12px; box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .slide { display: none; padding: 40px; }
+    .slide.active { display: block; }
+
+    .slide-eyebrow {
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
+    }
+
+    .slide-headline {
+      color: var(--navy); font-size: clamp(18px, 2.8vw, 26px);
+      font-weight: 700; line-height: 1.3; margin-bottom: 32px;
+      max-width: 680px;
+    }
+
+    /* source chips visual */
+    .sources-visual {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 28px; align-items: center;
+    }
+
+    .source-chip {
+      background: var(--gray-light); border: 1px solid #CBD5E0;
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; font-weight: 500; color: var(--gray-text);
+    }
+
+    .source-chip--teal {
+      background: #E6F7F4; border: 1px solid #81C8BE;
+      color: #0A6B5E; font-weight: 600;
+    }
+
+    .flow-arrow {
+      font-size: 18px; color: var(--gray-muted); margin: 0 4px;
+    }
+
+    .flow-box {
+      background: var(--navy); color: var(--white);
+      border-radius: 8px; padding: 10px 20px;
+      font-size: 13px; font-weight: 600; text-align: center;
+      line-height: 1.4;
+    }
+
+    .flow-box--output {
+      background: #E6F7F4; color: #0A6B5E;
+      border: 1.5px solid #81C8BE;
+    }
+
+    .slide-dashed-output {
+      border: 2px dashed #CBD5E0; border-radius: 8px;
+      padding: 12px 20px; color: var(--gray-muted); font-size: 13px;
+      text-align: center; margin-top: 8px; max-width: 300px;
+    }
+
+    .evidence-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      margin-top: 32px;
+    }
+
+    .evidence-card {
+      background: var(--off-white); border: 1px solid var(--gray-light);
+      border-radius: 8px; padding: 20px;
+    }
+
+    .evidence-title {
+      color: var(--navy); font-size: 13px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .evidence-body {
+      color: var(--gray-text); font-size: 13px; line-height: 1.6;
+    }
+
+    /* dual audience note */
+    .audience-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      margin-top: 32px;
+    }
+
+    .audience-card {
+      background: var(--off-white); border-radius: 8px;
+      padding: 20px 20px 20px 24px;
+    }
+
+    .audience-card--consulting {
+      border-left: 3px solid var(--accent);
+    }
+
+    .audience-card--employer {
+      border-left: 3px solid var(--gold);
+    }
+
+    .audience-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+
+    .audience-label--consulting { color: var(--accent); }
+    .audience-label--employer { color: #92400E; }
+
+    .audience-body {
+      color: var(--gray-text); font-size: 13px; line-height: 1.6;
+    }
+
+    /* slide nav */
+    .slide-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px; background: var(--off-white);
+      border-top: 1px solid var(--gray-light);
+    }
+
+    .slide-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600;
+      cursor: pointer; border: 1px solid var(--gray-light);
+      background: var(--white); color: var(--gray-text);
+      transition: all 0.2s ease;
+    }
+
+    .slide-btn:hover:not(:disabled) { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .slide-btn:disabled { opacity: 0.35; cursor: default; }
+
+    .slide-dots { display: flex; gap: 8px; }
+    .slide-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gray-light); cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .slide-dot.active { background: var(--accent); }
+
+    /* ── DEMO MODE ── */
+    .demo-banner {
+      background: #E6F7F4; border: 1px solid #81C8BE;
+      border-radius: 8px; padding: 12px 20px;
+      font-size: 13px; color: #0A6B5E; font-weight: 500;
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .demo-banner-dot {
+      width: 8px; height: 8px; background: #0A6B5E;
+      border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* collapsible input panels */
+    .input-panels { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+
+    .input-panel {
+      border: 1px solid var(--gray-light); border-radius: 8px;
+      background: var(--white); overflow: hidden;
+    }
+
+    .input-panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px; cursor: pointer;
+      user-select: none; transition: background 0.15s ease;
+    }
+
+    .input-panel-header:hover { background: var(--off-white); }
+
+    .input-panel-left { display: flex; align-items: center; gap: 12px; }
+
+    .input-panel-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent); color: var(--white);
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .input-panel-label {
+      font-size: 14px; font-weight: 600; color: var(--navy);
+    }
+
+    .input-panel-sub {
+      font-size: 12px; color: var(--gray-muted); margin-top: 2px;
+    }
+
+    .input-panel-chevron {
+      color: var(--gray-muted); transition: transform 0.2s ease;
+      font-size: 16px; line-height: 1;
+    }
+
+    .input-panel.open .input-panel-chevron { transform: rotate(180deg); }
+
+    .input-panel-body {
+      display: none; padding: 0 20px 20px;
+    }
+
+    .input-panel.open .input-panel-body { display: block; }
+
+    .input-panel-text {
+      color: var(--gray-text); font-size: 14px; line-height: 1.7;
+      background: var(--off-white); border-radius: 6px;
+      padding: 16px; border: 1px solid var(--gray-light);
+      white-space: pre-wrap; font-family: inherit;
+    }
+
+    /* analysis output */
+    .view-analysis-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: var(--white);
+      border: none; padding: 12px 24px; border-radius: 4px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .view-analysis-btn:hover { background: var(--navy-dark); }
+
+    .output-area { margin-top: 36px; }
+    .output-area.hidden { display: none; }
+
+    /* module cards */
+    .module-block {
+      border: 1px solid var(--gray-light); border-radius: 10px;
+      overflow: hidden; margin-bottom: 24px;
+    }
+
+    .module-header {
+      background: var(--navy); padding: 16px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .module-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); color: var(--white);
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .module-title {
+      color: var(--white); font-size: 14px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    .module-body { padding: 24px; background: var(--white); }
+
+    /* JTBD cards */
+    .jtbd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .jtbd-card {
+      border: 1px solid var(--gray-light); border-radius: 8px;
+      padding: 20px; background: var(--off-white);
+    }
+
+    .jtbd-statement {
+      color: var(--navy); font-size: 14px; font-weight: 600;
+      line-height: 1.4; margin-bottom: 14px;
+    }
+
+    .jtbd-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
+    .meta-pill {
+      display: inline-block; border-radius: 20px; padding: 3px 10px;
+      font-size: 11px; font-weight: 600;
+    }
+
+    .meta-pill--type { background: #EBF5FB; color: #1a6fa0; }
+    .meta-pill--freq { background: #F0FDF4; color: #166534; }
+    .meta-pill--freq-med { background: #FFFBEB; color: #92400E; }
+    .meta-pill--role { background: var(--gray-light); color: var(--gray-text); }
+
+    .jtbd-quote {
+      border-left: 2px solid var(--accent); padding-left: 12px;
+      font-size: 12px; color: var(--gray-muted); font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* pain matrix table */
+    .pain-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .pain-table th {
+      text-align: left; color: var(--gray-muted); font-size: 11px;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 8px 12px 8px 0; border-bottom: 1px solid var(--gray-light);
+    }
+    .pain-table td {
+      padding: 12px 12px 12px 0; border-bottom: 1px solid var(--gray-light);
+      vertical-align: top; color: var(--gray-text);
+    }
+    .pain-table tr:last-child td { border-bottom: none; }
+    .pain-table td:first-child { color: var(--navy); font-weight: 600; width: 32px; }
+    .pain-table td:nth-child(2) { color: var(--navy); font-weight: 500; }
+
+    .sev-pill {
+      display: inline-block; border-radius: 20px; padding: 2px 8px;
+      font-size: 11px; font-weight: 600;
+    }
+    .sev-critical { background: #FEE2E2; color: #991B1B; }
+    .sev-high { background: #FEF3C7; color: #92400E; }
+    .sev-medium { background: #EBF5FB; color: #1a6fa0; }
+    .sev-none { background: #F3F4F6; color: #374151; }
+
+    /* buyer role cards */
+    .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .role-card {
+      border: 1px solid var(--gray-light); border-radius: 8px;
+      padding: 20px;
+    }
+
+    .role-label {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
+    }
+
+    .role-title {
+      color: var(--navy); font-size: 14px; font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .role-body {
+      color: var(--gray-text); font-size: 13px; line-height: 1.6;
+    }
+
+    /* PMF score */
+    .pmf-score-block {
+      background: var(--off-white); border-radius: 10px;
+      padding: 24px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 24px;
+    }
+
+    .pmf-score-num {
+      font-size: 48px; font-weight: 700; color: var(--navy);
+      line-height: 1; flex-shrink: 0;
+    }
+
+    .pmf-score-label {
+      color: var(--gray-muted); font-size: 13px; margin-top: 4px;
+    }
+
+    .pmf-signals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+    .pmf-signal-group { }
+
+    .pmf-signal-heading {
+      font-size: 12px; font-weight: 700; color: var(--navy);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .pmf-signal-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: var(--gray-text); line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .pmf-signal-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 4px;
+    }
+
+    .pmf-signal-dot--lead { background: var(--accent); }
+    .pmf-signal-dot--lag { background: var(--gold); }
+
+    .pmf-confidence {
+      background: #FFFBEB; border-left: 3px solid var(--gold);
+      padding: 12px 16px; border-radius: 0 6px 6px 0;
+      font-size: 13px; color: #78350F; line-height: 1.6;
+    }
+
+    /* validation roadmap */
+    .roadmap-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .roadmap-item {
+      border: 1px solid var(--gray-light); border-radius: 8px;
+      padding: 20px; position: relative; padding-left: 52px;
+    }
+
+    .roadmap-num {
+      position: absolute; left: 16px; top: 20px;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent); color: var(--white);
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .roadmap-action {
+      color: var(--navy); font-size: 14px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .roadmap-detail {
+      color: var(--gray-text); font-size: 13px; line-height: 1.65;
+    }
+
+    .roadmap-detail strong { color: var(--navy); font-weight: 600; }
+
+    /* ── LIVE MODE ── */
+    .live-banner {
+      background: #FFF8E7; border-left: 3px solid var(--gold);
+      padding: 12px 16px; border-radius: 0 8px 8px 0;
+      font-size: 13px; color: #78350F; margin-bottom: 32px;
+      line-height: 1.55;
+    }
+
+    .form-group { margin-bottom: 24px; }
+
+    .form-label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--navy); margin-bottom: 8px;
+    }
+
+    .form-label span {
+      font-weight: 400; color: var(--gray-muted); font-size: 12px;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid var(--gray-light); border-radius: 6px;
+      font-size: 14px; font-family: inherit; color: var(--gray-text);
+      background: var(--white);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none; border-color: var(--accent);
+    }
+
+    .form-textarea { resize: vertical; min-height: 100px; }
+
+    .form-textarea--tall { min-height: 140px; }
+
+    .source-entry {
+      border: 1px solid var(--gray-light); border-radius: 8px;
+      padding: 20px; margin-bottom: 12px; background: var(--white);
+      position: relative;
+    }
+
+    .source-entry-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .source-entry-num {
+      font-size: 13px; font-weight: 700; color: var(--accent);
+    }
+
+    .remove-source-btn {
+      background: none; border: none; color: var(--gray-muted);
+      cursor: pointer; font-size: 18px; line-height: 1; padding: 0;
+      transition: color 0.2s;
+    }
+
+    .remove-source-btn:hover { color: #C53030; }
+
+    .add-source-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: none; border: 1px dashed #CBD5E0;
+      padding: 10px 18px; border-radius: 6px;
+      color: var(--accent); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s ease; width: 100%;
+      justify-content: center;
+    }
+
+    .add-source-btn:hover { border-color: var(--accent); background: #EBF5FB; }
+    .add-source-btn:disabled { opacity: 0.4; cursor: default; }
+
+    .sources-counter {
+      font-size: 12px; color: var(--gray-muted); margin: 12px 0 24px;
+    }
+
+    .sources-counter span { color: var(--navy); font-weight: 600; }
+
+    .run-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: var(--white);
+      border: none; padding: 13px 28px; border-radius: 4px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .run-btn:hover:not(:disabled) { background: var(--navy); }
+    .run-btn:disabled { opacity: 0.45; cursor: default; }
+
+    .loading-state {
+      display: none; align-items: center; gap: 12px;
+      padding: 20px; background: var(--off-white);
+      border-radius: 8px; margin-top: 24px;
+      font-size: 14px; color: var(--gray-text);
+    }
+
+    .loading-state.visible { display: flex; }
+
+    .spinner {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid var(--gray-light);
+      border-top-color: var(--accent);
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      display: none; background: #FEF2F2; border-left: 3px solid #C53030;
+      padding: 12px 16px; border-radius: 0 6px 6px 0;
+      font-size: 13px; color: #991B1B; margin-top: 16px; line-height: 1.55;
+    }
+
+    .error-msg.visible { display: block; }
+
+    .scope-note {
+      background: var(--off-white); border: 1px solid var(--gray-light);
+      border-radius: 8px; padding: 20px; margin-top: 32px;
+      font-size: 13px; color: var(--gray-muted); line-height: 1.65;
+    }
+
+    .scope-note strong { color: var(--navy); }
+
+    /* ── AUTHOR ── */
+    .tool-author {
+      max-width: 900px; margin: 0 auto;
+      padding: 0 24px 80px;
+      border-top: 1px solid var(--gray-light);
+      padding-top: 40px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .evidence-grid { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .jtbd-grid { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr; }
+      .pmf-signals-grid { grid-template-columns: 1fr; }
+      .pmf-score-block { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .slide { padding: 24px; }
+      .slide-nav { padding: 16px 24px; }
+    }
+  </style>
+</head>
+<body class="tool-page">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-brand">Raja Annadurai</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#tools" class="active">Tools</a></li>
+      <li><a href="../index.html#thinking">Thinking</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="mobile-menu" id="mobile-menu">
+  <a href="../index.html#work"     onclick="closeMobile()">Work</a>
+  <a href="../index.html#about"    onclick="closeMobile()">About</a>
+  <a href="../index.html#tools"    onclick="closeMobile()">Tools</a>
+  <a href="../index.html#thinking" onclick="closeMobile()">Thinking</a>
+  <a href="../index.html#contact"  onclick="closeMobile()">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="tool-hero">
+  <div class="tool-hero-inner">
+    <a href="../index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to portfolio
+    </a>
+    <span class="tool-category">Tool · Product Management</span>
+    <h1 class="tool-title">Voice of Customer Analyser</h1>
+    <p class="tool-subtitle">Aggregate raw VoC from five B2B sources. Weight requirements by importance. Output a structured list ready for House of Quality input.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1: INTRO SLIDES
+     ═══════════════════════════════════════════ -->
+<section class="tool-section tool-section--alt">
+  <div class="tool-section-inner">
+    <p class="section-eyebrow">The problem and the solution</p>
+
+    <div class="slide-deck">
+      <!-- Slide 1 -->
+      <div class="slide active" id="slide-1">
+        <p class="slide-eyebrow">Slide 1 of 2</p>
+        <h2 class="slide-headline">Industrial product teams make decisions from one voice. Five voices are available and nobody is aggregating them.</h2>
+
+        <!-- disconnected sources visual -->
+        <div class="sources-visual">
+          <span class="source-chip">Quality team</span>
+          <span class="source-chip">Sales team</span>
+          <span class="source-chip">Business development</span>
+          <span class="source-chip">Market data</span>
+          <span class="source-chip">Direct interviews</span>
+          <span class="flow-arrow">&#8594;</span>
+          <div>
+            <div class="slide-dashed-output">Product decision<br><span style="font-size:11px;color:var(--gray-muted);">Based on which team had the last conversation?</span></div>
+          </div>
+        </div>
+
+        <div class="evidence-grid">
+          <div class="evidence-card">
+            <p class="evidence-title">Data exists, structure does not</p>
+            <p class="evidence-body">ERP complaints use defect codes. CRM uses deal stages. Neither speaks in customer requirement language.</p>
+          </div>
+          <div class="evidence-card">
+            <p class="evidence-title">Nobody owns the cross-functional step</p>
+            <p class="evidence-body">VoC aggregation sits between quality, sales, BD, and R&amp;D. Work without a single owner does not happen.</p>
+          </div>
+          <div class="evidence-card">
+            <p class="evidence-title">QFD starts on weak ground</p>
+            <p class="evidence-body">The House of Quality left column is almost always the weakest part of any NPI exercise. It was assembled from memory, not evidence.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" id="slide-2">
+        <p class="slide-eyebrow">Slide 2 of 2</p>
+        <h2 class="slide-headline">Aggregate all five sources. Weight by importance. Output a requirements list ready for House of Quality input.</h2>
+
+        <!-- connected sources visual -->
+        <div class="sources-visual" style="flex-wrap:wrap;align-items:center;gap:10px;">
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span class="source-chip source-chip--teal">Quality team</span>
+            <span class="source-chip source-chip--teal">Sales team</span>
+            <span class="source-chip source-chip--teal">Business development</span>
+            <span class="source-chip source-chip--teal">Market data</span>
+            <span class="source-chip source-chip--teal">Direct interviews</span>
+          </div>
+          <span class="flow-arrow" style="font-size:24px;">&#8594;</span>
+          <div class="flow-box" style="max-width:200px;">VoC Analyser<br><span style="font-size:11px;font-weight:400;opacity:0.8;">Google Gemini · B2B industrial pre-config</span></div>
+          <span class="flow-arrow" style="font-size:24px;">&#8594;</span>
+          <div class="flow-box flow-box--output">QFD-ready requirements<br><span style="font-size:11px;">with importance weights</span></div>
+        </div>
+
+        <div class="evidence-grid">
+          <div class="evidence-card">
+            <p class="evidence-title">Multi-source by design</p>
+            <p class="evidence-body">Accepts inputs from all five channels. Minimum two sources required for defensible prioritization. Source attribution preserved in output.</p>
+          </div>
+          <div class="evidence-card">
+            <p class="evidence-title">B2B industrial pre-configured</p>
+            <p class="evidence-body">Built-in understanding of multi-stakeholder buying, long cycles, compliance requirements, and cost-of-ownership dynamics. No prompting needed.</p>
+          </div>
+          <div class="evidence-card">
+            <p class="evidence-title">Output connects to HoQ</p>
+            <p class="evidence-body">JTBD requirement statements, importance weights 1 to 9, buyer role, and source attribution. Drop directly into House of Quality left column.</p>
+          </div>
+        </div>
+
+        <div class="audience-grid">
+          <div class="audience-card audience-card--consulting">
+            <p class="audience-label audience-label--consulting">For consulting clients</p>
+            <p class="audience-body">Run this with your NPD team using your internal data as part of a market entry or product strategy engagement via Sigma Plus Associates.</p>
+          </div>
+          <div class="audience-card audience-card--employer">
+            <p class="audience-label audience-label--employer">For prospective employers</p>
+            <p class="audience-body">Built on 15+ years of B2B industrial VoC practice. Demonstrates methodology depth, domain expertise, and AI tool development capability.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide nav -->
+      <div class="slide-nav">
+        <button class="slide-btn" id="prev-btn" onclick="prevSlide()" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Previous
+        </button>
+        <div class="slide-dots">
+          <div class="slide-dot active" onclick="goToSlide(0)"></div>
+          <div class="slide-dot" onclick="goToSlide(1)"></div>
+        </div>
+        <button class="slide-btn" id="next-btn" onclick="nextSlide()">
+          Next
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2: DEMO MODE
+     ═══════════════════════════════════════════ -->
+<section class="tool-section" id="demo-section">
+  <div class="tool-section-inner">
+    <p class="section-eyebrow">Demo mode</p>
+    <h2 class="section-heading">See it in action</h2>
+    <p class="section-note">Sample analysis. No API key required.</p>
+
+    <div class="demo-banner">
+      <span class="demo-banner-dot"></span>
+      Pre-loaded scenario: miniaturized pressure transmitter for pharmaceutical cleanroom process monitoring. Fictional product.
+    </div>
+
+    <!-- Input panels -->
+    <p style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:14px;">Five sources processed</p>
+    <div class="input-panels">
+
+      <div class="input-panel" id="panel-1">
+        <div class="input-panel-header" onclick="togglePanel('panel-1')">
+          <div class="input-panel-left">
+            <div class="input-panel-num">1</div>
+            <div>
+              <p class="input-panel-label">Quality team data</p>
+              <p class="input-panel-sub">Field complaint summary Q2-Q3</p>
+            </div>
+          </div>
+          <span class="input-panel-chevron">&#8964;</span>
+        </div>
+        <div class="input-panel-body">
+          <div class="input-panel-text">Field complaint summary Q2-Q3: 18 incidents of sensor drift after CIP (cleaning in place) cycles using NaOH 2% at 80&deg;C. Customers report recalibration required every 3 months instead of specified 12-month interval. Warranty claims concentrated in 3 food and beverage accounts. Root cause investigation ongoing &mdash; suspected diaphragm material degradation under alkaline cleaning chemistry.</div>
+        </div>
+      </div>
+
+      <div class="input-panel" id="panel-2">
+        <div class="input-panel-header" onclick="togglePanel('panel-2')">
+          <div class="input-panel-left">
+            <div class="input-panel-num">2</div>
+            <div>
+              <p class="input-panel-label">Sales team CRM notes</p>
+              <p class="input-panel-sub">Pharma, food processing, biotech accounts</p>
+            </div>
+          </div>
+          <span class="input-panel-chevron">&#8964;</span>
+        </div>
+        <div class="input-panel-body">
+          <div class="input-panel-text">Three separate accounts (pharma, food processing, biotech) requested FDA 21 CFR Part 11 compliant data logging this quarter. Current model does not support it. Lost one deal to a competitor explicitly on this basis. Two more accounts evaluating alternatives. Additional recurring request: HART protocol overlay on 4-20mA output &mdash; our model is 4-20mA only, no HART. Came up in 5 of last 8 technical discussions.</div>
+        </div>
+      </div>
+
+      <div class="input-panel" id="panel-3">
+        <div class="input-panel-header" onclick="togglePanel('panel-3')">
+          <div class="input-panel-left">
+            <div class="input-panel-num">3</div>
+            <div>
+              <p class="input-panel-label">Business development notes</p>
+              <p class="input-panel-sub">Market visit summary, DACH region</p>
+            </div>
+          </div>
+          <span class="input-panel-chevron">&#8964;</span>
+        </div>
+        <div class="input-panel-body">
+          <div class="input-panel-text">Market visit summary &mdash; 6 customer site visits across DACH region, pharmaceutical and biotech sector. Primary finding: validation lifecycle is the biggest procurement pain point. Customers report 8 to 14 weeks for sensor qualification per site, which creates significant project delays. Several mentioned IQ/OQ/PQ documentation package as a purchasing decision factor &mdash; currently not available from us. Two R&amp;D managers mentioned interest in flush-mount diaphragm variant for viscous media applications. Not in current portfolio.</div>
+        </div>
+      </div>
+
+      <div class="input-panel" id="panel-4">
+        <div class="input-panel-header" onclick="togglePanel('panel-4')">
+          <div class="input-panel-left">
+            <div class="input-panel-num">4</div>
+            <div>
+              <p class="input-panel-label">Market data and RFQ analysis</p>
+              <p class="input-panel-sub">9 RFQs received in H1</p>
+            </div>
+          </div>
+          <span class="input-panel-chevron">&#8964;</span>
+        </div>
+        <div class="input-panel-body">
+          <div class="input-panel-text">Analysis of 9 RFQs received in H1: 7 of 9 specified ATEX Zone 1 certification requirement. Our current product is Zone 2 only. 6 of 9 required hygienic design (EHEDG or 3-A certification). 5 of 9 requested IO-Link or digital output option alongside 4-20mA. 4 of 9 required ingress protection IP69K &mdash; current product is IP67.</div>
+        </div>
+      </div>
+
+      <div class="input-panel" id="panel-5">
+        <div class="input-panel-header" onclick="togglePanel('panel-5')">
+          <div class="input-panel-left">
+            <div class="input-panel-num">5</div>
+            <div>
+              <p class="input-panel-label">Direct customer interview</p>
+              <p class="input-panel-sub">Process engineer, pharma contract manufacturer</p>
+            </div>
+          </div>
+          <span class="input-panel-chevron">&#8964;</span>
+        </div>
+        <div class="input-panel-body">
+          <div class="input-panel-text">Interview with process engineer, mid-size pharma contract manufacturer: Primary job is to ensure batch traceability compliance. Biggest pain is sensor exchange during production campaigns &mdash; every swap triggers a revalidation event. Estimated cost per revalidation: CHF 15,000 to 25,000 in downtime and documentation. Ideal: a sensor that can be exchanged without triggering full revalidation, with stored calibration certificate. Not aware of any supplier offering this currently. Secondary pain: installation &mdash; current threaded process connections require specialized tooling maintenance teams do not always have. Requested hygienic clamp connection as preferred option.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="view-analysis-btn" onclick="toggleDemoOutput()">
+      <svg id="view-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span id="view-btn-text">View analysis</span>
+    </button>
+
+    <!-- PRE-COMPUTED OUTPUT -->
+    <div class="output-area hidden" id="demo-output">
+
+      <!-- Module 1: JTBD -->
+      <div class="module-block">
+        <div class="module-header">
+          <div class="module-num">1</div>
+          <div class="module-title">Jobs to be Done</div>
+        </div>
+        <div class="module-body">
+          <div class="jtbd-grid">
+
+            <div class="jtbd-card">
+              <p class="jtbd-statement">Ensure continuous batch traceability compliance without revalidation triggers</p>
+              <div class="jtbd-meta">
+                <span class="meta-pill meta-pill--type">Functional</span>
+                <span class="meta-pill meta-pill--freq">High &middot; 4 of 5 sources</span>
+                <span class="meta-pill meta-pill--role">Quality / Regulatory Affairs</span>
+              </div>
+              <p class="jtbd-quote">"Every sensor swap triggers a revalidation event &mdash; CHF 15,000 to 25,000 in downtime"</p>
+            </div>
+
+            <div class="jtbd-card">
+              <p class="jtbd-statement">Maintain sensor accuracy through aggressive CIP cycles</p>
+              <div class="jtbd-meta">
+                <span class="meta-pill meta-pill--type">Functional</span>
+                <span class="meta-pill meta-pill--freq">High &middot; 3 sources, 18 complaints</span>
+                <span class="meta-pill meta-pill--role">Production / Process Engineering</span>
+              </div>
+              <p class="jtbd-quote">"Recalibration required every 3 months instead of 12-month interval"</p>
+            </div>
+
+            <div class="jtbd-card">
+              <p class="jtbd-statement">Reduce sensor qualification and procurement lead time</p>
+              <div class="jtbd-meta">
+                <span class="meta-pill meta-pill--type">Functional</span>
+                <span class="meta-pill meta-pill--freq-med">Medium &middot; 3 sources</span>
+                <span class="meta-pill meta-pill--role">Project Engineering / Procurement</span>
+              </div>
+              <p class="jtbd-quote">"8 to 14 weeks for sensor qualification per site creates significant project delays"</p>
+            </div>
+
+            <div class="jtbd-card">
+              <p class="jtbd-statement">Demonstrate regulatory compliance to internal and external auditors</p>
+              <div class="jtbd-meta">
+                <span class="meta-pill meta-pill--type">Social / Organizational</span>
+                <span class="meta-pill meta-pill--freq-med">Medium &middot; 3 sources</span>
+                <span class="meta-pill meta-pill--role">Quality Manager / Regulatory Affairs</span>
+              </div>
+              <p class="jtbd-quote">"FDA 21 CFR Part 11 compliant data logging requested by 3 accounts"</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2: Pain Priority Matrix -->
+      <div class="module-block">
+        <div class="module-header">
+          <div class="module-num">2</div>
+          <div class="module-title">Pain priority matrix</div>
+        </div>
+        <div class="module-body">
+          <table class="pain-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Pain</th>
+                <th>Severity</th>
+                <th>Frequency</th>
+                <th>Current satisfaction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Chemical resistance under CIP cleaning</td>
+                <td><span class="sev-pill sev-critical">Critical</span></td>
+                <td>High</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Plug-and-play exchange without revalidation</td>
+                <td><span class="sev-pill sev-high">High</span></td>
+                <td>High</td>
+                <td><span class="sev-pill sev-none">None available in market</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>ATEX Zone 1 certification</td>
+                <td><span class="sev-pill sev-high">High</span></td>
+                <td>High &middot; 7 of 9 RFQs</td>
+                <td>Low (Zone 2 only)</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>IQ/OQ/PQ validation documentation package</td>
+                <td><span class="sev-pill sev-medium">Medium</span></td>
+                <td>Medium</td>
+                <td>Low</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Module 3: Buyer Role Analysis -->
+      <div class="module-block">
+        <div class="module-header">
+          <div class="module-num">3</div>
+          <div class="module-title">Buyer role analysis</div>
+        </div>
+        <div class="module-body">
+          <div class="role-grid">
+
+            <div class="role-card">
+              <p class="role-label">Economic buyer</p>
+              <p class="role-title">Operations Director / Head of Manufacturing</p>
+              <p class="role-body">Driven by production uptime and revalidation cost avoidance. Decision weight increases significantly when CHF cost of revalidation is quantified.</p>
+            </div>
+
+            <div class="role-card">
+              <p class="role-label">Technical buyer</p>
+              <p class="role-title">Process / Instrumentation Engineer</p>
+              <p class="role-body">Driven by HART protocol, IO-Link, hygienic design compliance, IP69K, ATEX Zone 1. Most active in RFQ specification writing.</p>
+            </div>
+
+            <div class="role-card">
+              <p class="role-label">End user</p>
+              <p class="role-title">Maintenance / Production team</p>
+              <p class="role-body">Driven by installation ease, calibration interval, physical connection type. Often absent from procurement conversation but influences repeat purchase decisions.</p>
+            </div>
+
+            <div class="role-card">
+              <p class="role-label">Quality and regulatory</p>
+              <p class="role-title">Quality Manager / Regulatory Affairs</p>
+              <p class="role-body">Driven by FDA 21 CFR Part 11, IQ/OQ/PQ documentation, validation lifecycle management. Effective veto power in pharmaceutical sector.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4: PMF Signal Score -->
+      <div class="module-block">
+        <div class="module-header">
+          <div class="module-num">4</div>
+          <div class="module-title">PMF signal score</div>
+        </div>
+        <div class="module-body">
+          <div class="pmf-score-block">
+            <div>
+              <div class="pmf-score-num">7.2</div>
+              <div class="pmf-score-label">out of 10</div>
+            </div>
+            <div style="flex:1;">
+              <p style="color:var(--navy);font-size:14px;font-weight:600;margin-bottom:6px;">Medium-high confidence signal</p>
+              <p style="color:var(--gray-text);font-size:13px;line-height:1.6;">Based on 5 sources including 3 customer interviews and 9 RFQ data points. Strong leading signals present; lagging confirmation emerging.</p>
+            </div>
+          </div>
+
+          <div class="pmf-signals-grid">
+            <div class="pmf-signal-group">
+              <p class="pmf-signal-heading">Leading signals (strong)</p>
+              <div class="pmf-signal-item">
+                <span class="pmf-signal-dot pmf-signal-dot--lead"></span>
+                <span><strong style="color:var(--navy);">Unsolicited problem sharing:</strong> 3 accounts described revalidation cost in specific CHF figures without being asked</span>
+              </div>
+              <div class="pmf-signal-item">
+                <span class="pmf-signal-dot pmf-signal-dot--lead"></span>
+                <span><strong style="color:var(--navy);">Reference willingness:</strong> 2 customers offered to participate in co-development for plug-and-play exchange concept</span>
+              </div>
+            </div>
+            <div class="pmf-signal-group">
+              <p class="pmf-signal-heading">Lagging signals (emerging)</p>
+              <div class="pmf-signal-item">
+                <span class="pmf-signal-dot pmf-signal-dot--lag"></span>
+                <span><strong style="color:var(--navy);">Repeat specification:</strong> ATEX Zone 1 and hygienic design appearing in 7 of 9 RFQs signals market consensus forming</span>
+              </div>
+              <div class="pmf-signal-item">
+                <span class="pmf-signal-dot pmf-signal-dot--lag"></span>
+                <span><strong style="color:var(--navy);">Approved vendor status:</strong> not yet established for pharmaceutical sector</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pmf-confidence">
+            <strong>Confidence note:</strong> Based on 5 sources, includes 3 customer interviews and 9 RFQ data points. Medium-high confidence. Recommend 3 to 5 additional interviews in pharmaceutical sector to validate plug-and-play exchange as primary unmet need before committing to development investment.
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5: Validation Roadmap -->
+      <div class="module-block">
+        <div class="module-header">
+          <div class="module-num">5</div>
+          <div class="module-title">Validation roadmap</div>
+        </div>
+        <div class="module-body">
+          <div class="roadmap-list">
+
+            <div class="roadmap-item">
+              <div class="roadmap-num">1</div>
+              <p class="roadmap-action">Validate the plug-and-play exchange hypothesis</p>
+              <p class="roadmap-detail">
+                <strong>Suggested interview question:</strong> "If a sensor could be exchanged without triggering a full revalidation event &mdash; with stored calibration certificate and IQ/OQ documentation pre-packaged &mdash; how would that change your procurement and maintenance planning?"<br><br>
+                <strong>Target:</strong> 5 production engineers at pharmaceutical contract manufacturers in DACH region.
+              </p>
+            </div>
+
+            <div class="roadmap-item">
+              <div class="roadmap-num">2</div>
+              <p class="roadmap-action">Quantify the ATEX Zone 1 addressable market</p>
+              <p class="roadmap-detail">
+                <strong>Gap:</strong> No behavioral data on actual purchase frequency at Zone 1 requirement.<br><br>
+                <strong>Recommended action:</strong> Run win/loss analysis on last 12 months of quotes where Zone 1 was specified.
+              </p>
+            </div>
+
+            <div class="roadmap-item">
+              <div class="roadmap-num">3</div>
+              <p class="roadmap-action">Assess competitive response to hygienic design gap</p>
+              <p class="roadmap-detail">
+                <strong>Gap:</strong> No competitive intelligence on EHEDG/3-A certified alternatives from main competitors.<br><br>
+                <strong>Recommended action:</strong> BD team to conduct competitive teardown on top 3 competitors' hygienic product lines.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /demo-output -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3: LIVE MODE
+     ═══════════════════════════════════════════ -->
+<section class="tool-section tool-section--alt" id="live-section">
+  <div class="tool-section-inner">
+    <p class="section-eyebrow">Live mode</p>
+    <h2 class="section-heading">Run your own analysis</h2>
+    <p class="section-note">Your data stays in your browser. The API key is used only for this session and is never stored.</p>
+
+    <div class="live-banner">
+      This tool is scoped to B2B engineered physical goods: sensors, connectors, PCBs, measurement instruments, pumps, actuators, drives, valves, and sealing systems. It does not replace QFD or House of Quality. It produces the structured customer requirements that feed into the HoQ left column. The QFD session itself still requires human experts from quality, engineering, sales, and business development.
+    </div>
+
+    <!-- Product description -->
+    <div class="form-group">
+      <label class="form-label" for="product-desc">
+        Product description <span>(required)</span>
+      </label>
+      <textarea
+        class="form-textarea form-textarea--tall"
+        id="product-desc"
+        placeholder="Describe the product or technology you are analysing. Example: a new flexible pressure sensor for food processing equipment"
+      ></textarea>
+    </div>
+
+    <!-- Sources -->
+    <div class="form-group">
+      <label class="form-label">VoC sources <span>(minimum 2, maximum 5)</span></label>
+      <div id="source-entries"></div>
+      <p class="sources-counter">Sources added: <span id="source-count">0</span> of 5</p>
+      <button class="add-source-btn" id="add-source-btn" onclick="addSource()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add a source
+      </button>
+    </div>
+
+    <!-- API key -->
+    <div class="form-group">
+      <label class="form-label" for="api-key">
+        Google Gemini API key <span>(used for this session only, never stored)</span>
+      </label>
+      <input
+        type="password"
+        class="form-input"
+        id="api-key"
+        placeholder="AIza..."
+        autocomplete="off"
+        oninput="updateRunBtn()"
+      >
+    </div>
+
+    <!-- Run -->
+    <button class="run-btn" id="run-btn" onclick="runAnalysis()" disabled>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Run analysis
+    </button>
+
+    <div class="loading-state" id="loading-state">
+      <div class="spinner"></div>
+      Sending to Gemini and parsing response...
+    </div>
+
+    <div class="error-msg" id="error-msg"></div>
+
+    <!-- Live output -->
+    <div class="output-area hidden" id="live-output"></div>
+
+    <div class="scope-note">
+      <strong>Note on scope.</strong> Going from this structured VoC output to a completed House of Quality requires human expert input from quality, engineering, sales, and business development. This tool produces the structured customer requirements that feed into the HoQ left column. The QFD session itself is a separate exercise.
+    </div>
+  </div>
+</section>
+
+
+<!-- AUTHOR BIO -->
+<section style="background:var(--white);padding:0 0 0;">
+  <div class="tool-author">
+    <div class="author-card">
+      <div class="author-avatar">RA</div>
+      <div class="author-info">
+        <p class="author-name">Raja Annadurai</p>
+        <p class="author-bio">Product manager and business developer with 15+ years in B2B industrial technology. Built and validated commercial pipelines across sensors, connectors, and measurement systems in the DACH region. This tool reflects methodology used in real NPI and market entry projects.</p>
+        <a href="https://www.linkedin.com/in/rannadurai/" target="_blank" rel="noopener" class="author-link">Connect on LinkedIn &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>&copy; 2026 Raja Annadurai</span>
+  </div>
+</footer>
+
+<script>
+// ── SLIDE DECK ─────────────────────────────────────────────────────
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slide-dot');
+
+function showSlide(n) {
+  slides.forEach((s, i) => s.classList.toggle('active', i === n));
+  dots.forEach((d, i) => d.classList.toggle('active', i === n));
+  document.getElementById('prev-btn').disabled = n === 0;
+  document.getElementById('next-btn').disabled = n === slides.length - 1;
+  currentSlide = n;
+}
+
+function nextSlide() { if (currentSlide < slides.length - 1) showSlide(currentSlide + 1); }
+function prevSlide() { if (currentSlide > 0) showSlide(currentSlide - 1); }
+function goToSlide(n) { showSlide(n); }
+
+
+// ── COLLAPSIBLE INPUT PANELS ────────────────────────────────────────
+function togglePanel(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+
+// ── DEMO OUTPUT TOGGLE ─────────────────────────────────────────────
+let demoVisible = false;
+function toggleDemoOutput() {
+  demoVisible = !demoVisible;
+  const out = document.getElementById('demo-output');
+  const btn = document.getElementById('view-btn-text');
+  out.classList.toggle('hidden', !demoVisible);
+  btn.textContent = demoVisible ? 'Hide analysis' : 'View analysis';
+}
+
+
+// ── LIVE MODE: SOURCES ─────────────────────────────────────────────
+const SOURCE_TYPES = [
+  'Quality team data',
+  'Sales team CRM notes',
+  'Business development notes',
+  'Market data and RFQ analysis',
+  'Direct customer interview'
+];
+
+let sourceCount = 0;
+
+function addSource() {
+  if (sourceCount >= 5) return;
+  sourceCount++;
+  updateSourceCount();
+
+  const container = document.getElementById('source-entries');
+  const entry = document.createElement('div');
+  entry.className = 'source-entry';
+  entry.id = 'source-entry-' + sourceCount;
+
+  const opts = SOURCE_TYPES.map(t => `<option value="${t}">${t}</option>`).join('');
+
+  entry.innerHTML = `
+    <div class="source-entry-header">
+      <p class="source-entry-num">Source ${sourceCount}</p>
+      <button class="remove-source-btn" onclick="removeSource(${sourceCount})" aria-label="Remove source ${sourceCount}">&times;</button>
+    </div>
+    <div class="form-group" style="margin-bottom:12px;">
+      <label class="form-label">Source type</label>
+      <select class="form-select" id="source-type-${sourceCount}">
+        ${opts}
+      </select>
+    </div>
+    <div class="form-group" style="margin-bottom:0;">
+      <label class="form-label">Paste your VoC data</label>
+      <textarea class="form-textarea form-textarea--tall" id="source-data-${sourceCount}" placeholder="Paste raw notes, interview transcripts, RFQ summaries, or complaint logs..." oninput="updateRunBtn()"></textarea>
+    </div>
+  `;
+
+  container.appendChild(entry);
+  updateAddBtn();
+  updateRunBtn();
+}
+
+function removeSource(n) {
+  const el = document.getElementById('source-entry-' + n);
+  if (el) el.remove();
+  renumberSources();
+  updateAddBtn();
+  updateRunBtn();
+}
+
+function renumberSources() {
+  const entries = document.querySelectorAll('.source-entry');
+  sourceCount = entries.length;
+  entries.forEach((el, i) => {
+    const num = i + 1;
+    el.id = 'source-entry-' + num;
+    const numEl = el.querySelector('.source-entry-num');
+    if (numEl) numEl.textContent = 'Source ' + num;
+    const rmBtn = el.querySelector('.remove-source-btn');
+    if (rmBtn) {
+      rmBtn.setAttribute('onclick', 'removeSource(' + num + ')');
+      rmBtn.setAttribute('aria-label', 'Remove source ' + num);
+    }
+    const typeEl = el.querySelector('select');
+    if (typeEl) typeEl.id = 'source-type-' + num;
+    const dataEl = el.querySelector('textarea');
+    if (dataEl) dataEl.id = 'source-data-' + num;
+  });
+  updateSourceCount();
+}
+
+function updateSourceCount() {
+  document.getElementById('source-count').textContent = sourceCount;
+}
+
+function updateAddBtn() {
+  document.getElementById('add-source-btn').disabled = sourceCount >= 5;
+}
+
+function updateRunBtn() {
+  const apiKey = document.getElementById('api-key').value.trim();
+  const productDesc = document.getElementById('product-desc').value.trim();
+  const entries = document.querySelectorAll('.source-entry');
+  let filledSources = 0;
+  entries.forEach((_, i) => {
+    const data = document.getElementById('source-data-' + (i + 1));
+    if (data && data.value.trim().length > 10) filledSources++;
+  });
+  const ready = apiKey.length > 10 && productDesc.length > 10 && filledSources >= 2;
+  document.getElementById('run-btn').disabled = !ready;
+}
+
+
+// ── LIVE MODE: API CALL ────────────────────────────────────────────
+async function runAnalysis() {
+  const apiKey = document.getElementById('api-key').value.trim();
+  const productDesc = document.getElementById('product-desc').value.trim();
+
+  const entries = document.querySelectorAll('.source-entry');
+  const sources = [];
+  entries.forEach((_, i) => {
+    const n = i + 1;
+    const type = document.getElementById('source-type-' + n).value;
+    const data = document.getElementById('source-data-' + n).value.trim();
+    if (data.length > 10) sources.push({ type, data });
+  });
+
+  const errorEl = document.getElementById('error-msg');
+  const loadingEl = document.getElementById('loading-state');
+  const outputEl = document.getElementById('live-output');
+
+  errorEl.classList.remove('visible');
+  outputEl.classList.add('hidden');
+  outputEl.innerHTML = '';
+  loadingEl.classList.add('visible');
+  document.getElementById('run-btn').disabled = true;
+
+  const sourcesText = sources.map((s, i) =>
+    `Source ${i + 1} (${s.type}):\n${s.data}`
+  ).join('\n\n---\n\n');
+
+  const prompt = `You are an expert B2B industrial product manager specialising in Voice of Customer analysis and Jobs-to-be-Done methodology.
+
+Product under analysis: ${productDesc}
+
+Your task: analyse the following VoC data from ${sources.length} sources and return a structured JSON object. Apply JTBD methodology. Weight requirements on a 1 to 9 importance scale. Classify each signal by buyer role. Apply B2B industrial dynamics: multi-stakeholder buying, 6 to 18 month sales cycles, compliance-driven purchasing, cost-of-ownership as primary criterion. Scope is B2B engineered physical goods only.
+
+VoC DATA:
+
+${sourcesText}
+
+Return ONLY a valid JSON object with this exact structure. No markdown fences, no explanation, just the JSON:
+
+{
+  "jtbd": [
+    {
+      "statement": "string",
+      "type": "Functional | Social/Organizational | Emotional",
+      "frequency": "string (e.g. High · 3 of 4 sources)",
+      "buyerRole": "string",
+      "quote": "string (a short representative quote or paraphrase from the data)"
+    }
+  ],
+  "painMatrix": [
+    {
+      "pain": "string",
+      "severity": "Critical | High | Medium | Low",
+      "frequency": "string",
+      "currentSatisfaction": "string"
+    }
+  ],
+  "buyerRoles": [
+    {
+      "roleType": "string (e.g. Economic buyer)",
+      "roleTitle": "string (e.g. Operations Director)",
+      "description": "string"
+    }
+  ],
+  "pmfScore": {
+    "score": number,
+    "label": "string",
+    "leadingSignals": ["string"],
+    "laggingSignals": ["string"],
+    "confidenceNote": "string"
+  },
+  "validationRoadmap": [
+    {
+      "action": "string",
+      "detail": "string"
+    }
+  ],
+  "hoqNote": "string (one sentence stating that going from this structured VoC to a House of Quality requires human expert input from quality, engineering, sales, and business development)"
+}
+
+Return between 3 and 5 items in jtbd. Return between 3 and 5 items in painMatrix. Return 3 to 4 items in buyerRoles. Return 2 to 3 items in leadingSignals and laggingSignals. Return 2 to 3 items in validationRoadmap.`;
+
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.3, maxOutputTokens: 3000 }
+        })
+      }
+    );
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${response.status}`);
+    }
+
+    const data = await response.json();
+    const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!raw) throw new Error('No content returned from API.');
+
+    const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    let result;
+    try {
+      result = JSON.parse(cleaned);
+    } catch {
+      throw new Error('Could not parse the response as JSON. The model may have returned unexpected formatting.');
+    }
+
+    renderLiveOutput(result);
+    loadingEl.classList.remove('visible');
+    outputEl.classList.remove('hidden');
+
+  } catch (err) {
+    loadingEl.classList.remove('visible');
+    errorEl.textContent = 'Analysis failed: ' + err.message;
+    errorEl.classList.add('visible');
+  } finally {
+    document.getElementById('run-btn').disabled = false;
+  }
+}
+
+
+// ── RENDER LIVE OUTPUT ─────────────────────────────────────────────
+function renderLiveOutput(r) {
+  const out = document.getElementById('live-output');
+
+  const freqClass = (f) => {
+    if (!f) return 'meta-pill--freq-med';
+    return f.toLowerCase().startsWith('high') ? 'meta-pill--freq' : 'meta-pill--freq-med';
+  };
+
+  const sevClass = (s) => {
+    if (!s) return '';
+    const sl = s.toLowerCase();
+    if (sl === 'critical') return 'sev-critical';
+    if (sl === 'high') return 'sev-high';
+    if (sl === 'medium') return 'sev-medium';
+    return 'sev-none';
+  };
+
+  const esc = (s) => String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  // Module 1
+  const jtbdCards = (r.jtbd || []).map(j => `
+    <div class="jtbd-card">
+      <p class="jtbd-statement">${esc(j.statement)}</p>
+      <div class="jtbd-meta">
+        <span class="meta-pill meta-pill--type">${esc(j.type)}</span>
+        <span class="meta-pill ${freqClass(j.frequency)}">${esc(j.frequency)}</span>
+        <span class="meta-pill meta-pill--role">${esc(j.buyerRole)}</span>
+      </div>
+      <p class="jtbd-quote">"${esc(j.quote)}"</p>
+    </div>`).join('');
+
+  // Module 2
+  const painRows = (r.painMatrix || []).map((p, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td>${esc(p.pain)}</td>
+      <td><span class="sev-pill ${sevClass(p.severity)}">${esc(p.severity)}</span></td>
+      <td>${esc(p.frequency)}</td>
+      <td>${esc(p.currentSatisfaction)}</td>
+    </tr>`).join('');
+
+  // Module 3
+  const roleCards = (r.buyerRoles || []).map(b => `
+    <div class="role-card">
+      <p class="role-label">${esc(b.roleType)}</p>
+      <p class="role-title">${esc(b.roleTitle)}</p>
+      <p class="role-body">${esc(b.description)}</p>
+    </div>`).join('');
+
+  // Module 4
+  const pmf = r.pmfScore || {};
+  const leadItems = (pmf.leadingSignals || []).map(s => `
+    <div class="pmf-signal-item">
+      <span class="pmf-signal-dot pmf-signal-dot--lead"></span>
+      <span>${esc(s)}</span>
+    </div>`).join('');
+  const lagItems = (pmf.laggingSignals || []).map(s => `
+    <div class="pmf-signal-item">
+      <span class="pmf-signal-dot pmf-signal-dot--lag"></span>
+      <span>${esc(s)}</span>
+    </div>`).join('');
+
+  // Module 5
+  const roadmapItems = (r.validationRoadmap || []).map((v, i) => `
+    <div class="roadmap-item">
+      <div class="roadmap-num">${i + 1}</div>
+      <p class="roadmap-action">${esc(v.action)}</p>
+      <p class="roadmap-detail">${esc(v.detail)}</p>
+    </div>`).join('');
+
+  // HoQ note
+  const hoqNote = r.hoqNote
+    ? `<div class="pmf-confidence" style="margin-top:16px;">${esc(r.hoqNote)}</div>`
+    : '';
+
+  out.innerHTML = `
+    <div class="module-block">
+      <div class="module-header"><div class="module-num">1</div><div class="module-title">Jobs to be Done</div></div>
+      <div class="module-body"><div class="jtbd-grid">${jtbdCards}</div></div>
+    </div>
+
+    <div class="module-block">
+      <div class="module-header"><div class="module-num">2</div><div class="module-title">Pain priority matrix</div></div>
+      <div class="module-body">
+        <table class="pain-table">
+          <thead><tr><th>#</th><th>Pain</th><th>Severity</th><th>Frequency</th><th>Current satisfaction</th></tr></thead>
+          <tbody>${painRows}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="module-block">
+      <div class="module-header"><div class="module-num">3</div><div class="module-title">Buyer role analysis</div></div>
+      <div class="module-body"><div class="role-grid">${roleCards}</div></div>
+    </div>
+
+    <div class="module-block">
+      <div class="module-header"><div class="module-num">4</div><div class="module-title">PMF signal score</div></div>
+      <div class="module-body">
+        <div class="pmf-score-block">
+          <div>
+            <div class="pmf-score-num">${esc(String(pmf.score || ''))}</div>
+            <div class="pmf-score-label">out of 10</div>
+          </div>
+          <div style="flex:1;">
+            <p style="color:var(--navy);font-size:14px;font-weight:600;margin-bottom:6px;">${esc(pmf.label || '')}</p>
+          </div>
+        </div>
+        <div class="pmf-signals-grid">
+          <div class="pmf-signal-group">
+            <p class="pmf-signal-heading">Leading signals</p>${leadItems}
+          </div>
+          <div class="pmf-signal-group">
+            <p class="pmf-signal-heading">Lagging signals</p>${lagItems}
+          </div>
+        </div>
+        <div class="pmf-confidence">${esc(pmf.confidenceNote || '')}</div>
+      </div>
+    </div>
+
+    <div class="module-block">
+      <div class="module-header"><div class="module-num">5</div><div class="module-title">Validation roadmap</div></div>
+      <div class="module-body"><div class="roadmap-list">${roadmapItems}</div></div>
+    </div>
+
+    ${hoqNote}
+  `;
+}
+
+
+// ── HAMBURGER ──────────────────────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+// ── SCROLL FADE-IN ─────────────────────────────────────────────────
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const delay = parseFloat(el.dataset.delay || 0);
+    el.style.transitionDelay = delay + 's';
+    el.classList.add('visible');
+    setTimeout(() => { el.style.transitionDelay = ''; }, (0.5 + delay) * 1000);
+    fadeObs.unobserve(el);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+</script>
+</body>
+</html>
