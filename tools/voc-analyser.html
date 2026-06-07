@@ -1135,11 +1135,13 @@ Return ONLY a valid JSON object with this exact structure. No markdown fences, n
   "hoqNote": "string, one sentence stating that going from this structured VoC to a House of Quality requires human expert input from quality, engineering, sales, and business development"
 }
 
-Return 3 to 5 items in jtbd. Return 3 to 5 items in pains. Return 3 to 4 items in buyerRoles. Return 2 to 3 items in leading and lagging. Return all six journey stages in the specified order.`;
+Return 3 to 5 items in jtbd. Return 3 to 5 items in pains. Return 3 to 4 items in buyerRoles. Return 2 to 3 items in leading and lagging. Return all six journey stages in the specified order.
+
+Return ONLY a valid JSON object. No markdown formatting, no code blocks, no backticks, no explanatory text before or after. Begin your response with { and end with }.`;
 
   const body = {
     contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { temperature: 0.3, maxOutputTokens: 4000 }
+    generationConfig: { responseMimeType: "application/json", temperature: 0.3, maxOutputTokens: 3000 }
   };
   if (enrich) body.tools = [{ google_search: {} }];
 
@@ -1160,17 +1162,16 @@ Return 3 to 5 items in jtbd. Return 3 to 5 items in pains. Return 3 to 4 items i
 
     const data = await response.json();
     const parts = data?.candidates?.[0]?.content?.parts || [];
-    const raw = parts.map(p => p.text || '').join('').trim();
+    let rawText = parts.map(p => p.text || '').join('').trim();
 
-    if (!raw) throw new Error('No content returned from the API.');
+    if (!rawText) throw new Error('No content returned from the API.');
 
-    const cleaned = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-    let result;
-    try {
-      result = JSON.parse(cleaned);
-    } catch {
-      throw new Error('Could not parse the response as JSON. The model may have returned unexpected formatting.');
-    }
+    let cleanText = rawText
+      .replace(/```json\n?/g, '')
+      .replace(/```\n?/g, '')
+      .trim();
+    const parsed = JSON.parse(cleanText);
+    const result = parsed;
 
     const liveData = {
       sources: sources.map(s => ({ type: s.type, text: s.data })),
