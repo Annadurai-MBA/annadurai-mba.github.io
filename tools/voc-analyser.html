@@ -1141,7 +1141,7 @@ Return ONLY a valid JSON object. No markdown formatting, no code blocks, no back
 
   const body = {
     contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { responseMimeType: "application/json", temperature: 0.3, maxOutputTokens: 3000 }
+    generationConfig: { temperature: 0.3, maxOutputTokens: 3000 }
   };
   if (enrich) body.tools = [{ google_search: {} }];
 
