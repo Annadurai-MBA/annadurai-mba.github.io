@@ -175,7 +175,7 @@
 
       <!-- Tool 2 -->
       <div class="tool-card fade-up" data-delay="0.1">
-        <div class="status-badge"><span class="pulse-dot"></span> In Development</div>
+        <div class="status-badge" style="background:#F0FDF4;color:#166534;"><span class="pulse-dot" style="background:#22C55E;"></span> Live &middot; demo available</div>
         <div class="tool-icon">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
@@ -184,10 +184,30 @@
           </svg>
         </div>
         <h3 class="tool-title">Voice of Customer Analyser</h3>
-        <p class="tool-desc">Paste raw B2B customer interview notes. Extracts Jobs-to-be-Done statements, maps pain points by severity and frequency, and generates a PMF signal score, configured for industrial B2B buying contexts.</p>
+        <p class="tool-desc">Industrial companies collect customer voice across five teams. Quality complaints sit in ERP. Sales observations sit in CRM. Market intelligence sits in PowerPoint folders. Nobody aggregates them. This tool does: taking inputs from up to five internal sources and structuring them into prioritized customer requirements ready for House of Quality input. Pre-configured for B2B engineered goods: sensors, connectors, instruments, drives, and precision components.</p>
+
+        <div style="border:1px dashed var(--gray-light);border-radius:8px;padding:14px;background:var(--off-white);">
+          <p style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-muted);margin-bottom:10px;">Sample output preview</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:160px;background:var(--white);border:1px solid var(--gray-light);border-radius:6px;padding:12px;">
+              <p style="color:var(--navy);font-size:12px;font-weight:600;line-height:1.4;margin-bottom:8px;">Ensure batch traceability compliance without revalidation triggers</p>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                <span style="background:#EBF5FB;color:#1a6fa0;font-size:10px;font-weight:600;border-radius:10px;padding:2px 8px;">Functional</span>
+                <span style="background:#F0FDF4;color:#166534;font-size:10px;font-weight:600;border-radius:10px;padding:2px 8px;">High importance</span>
+                <span style="background:var(--gray-light);color:var(--gray-text);font-size:10px;font-weight:600;border-radius:10px;padding:2px 8px;">Quality/Regulatory</span>
+              </div>
+            </div>
+            <div style="flex:1;min-width:160px;background:var(--white);border:1px solid var(--gray-light);border-radius:6px;padding:12px;">
+              <p style="color:var(--navy);font-size:12px;font-weight:600;line-height:1.4;margin-bottom:8px;">Plug-and-play exchange without revalidation</p>
+              <span style="background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:600;border-radius:10px;padding:2px 8px;">Critical</span>
+            </div>
+          </div>
+        </div>
+
         <div class="tool-tags">
           <span class="tag">VoC Analysis</span><span class="tag">Jobs-to-be-Done</span><span class="tag">B2B</span>
         </div>
+        <a href="tools/voc-analyser.html" class="btn-navy" style="align-self:flex-start;">Try the demo &rarr;</a>
       </div>
 
       <!-- Tool 3 -->
